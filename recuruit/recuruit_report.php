@@ -86,7 +86,7 @@
 
 	<INPUT type="reset" name="reset" value="入力内容をリセットする">
     <input type="submit"name="btn_confirm" value="入力内容を確認する">
-    </form >
+    <p><a href="../user/user.php" style=mmargin:center>戻る</a></p>
 
 </body>
 </html>
