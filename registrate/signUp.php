@@ -24,7 +24,7 @@ $id = $_POST['month'];
 $id2 = $_POST['day'];
 $name = 'none';
 
-$password = password_hash('password', PASSWORD_DEFAULT);
+$password = password_hash('passw0rd', PASSWORD_DEFAULT);
 
 //登録処理
 for($id; $id <= $id2 ;$id++){
