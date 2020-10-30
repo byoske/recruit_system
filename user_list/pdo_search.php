@@ -2,6 +2,13 @@
 require_once('../admin_menu.php');
 require_once('../config.php');
 
+
+/*  戻ってもバッファに残るようにする  */
+header('Expires:-1');
+header('Cache-Control:');
+header('Pragma:');
+/***************************************/
+
 header("Content-type: text/html; charset=utf-8");
 
 if(empty($_POST)) {
@@ -71,19 +78,42 @@ if(empty($_POST)) {
 <tr><td>ID</td><td>NAME</td><td>MAIL</td><td>CREATED</td></tr>
 
 <?php
+
 if($row_count != 0){
     foreach($rows as $row){
 ?>
-<tr>
-	<td><?=$row['ID']?></td>
+
+	<td><?= $id = $row['ID']?></td>
 	<td><?=htmlspecialchars($row['NAME'],ENT_QUOTES,'UTF-8')?></td>
 	<td><?=htmlspecialchars($row['MAIL'],ENT_QUOTES,'UTF-8')?></td>
 	<td><?=htmlspecialchars($row['CREATED'],ENT_QUOTES,'UTF-8')?></td>
-</tr>
+
+ <?php
+
+
+
+    $flag = 0;
+    echo "<td>";
+    echo "<form action=../user_initialize/user_control.php method=post>";
+    echo "<input type=submit value=変更>";
+    echo "<input type=hidden name=id value='".$id."'>";
+    echo "<input type=hidden name=flag value='".$flag."'>";
+    echo "</form>";
+    echo "</td>";
+
+
+    echo "<td>";
+    echo "<form action=../user_delete/user_delete.php method=post>";
+    echo "<input type=submit value=削除>";
+    echo "<input type=hidden name=id value='".$id."'>";
+    echo "</td>";
+    echo "</form>";
+    echo "</td>";
+
+    echo "</tr>";
+    ?>
 <?php
     }
+
 }
 ?>
-
-</body>
-</html>

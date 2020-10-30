@@ -75,10 +75,13 @@ foreach ($table_datas as $table_name => $table_data) {
 
         }
 
+        $flag =1;
+
         echo "<td>";
         echo "<form action=../user_initialize/user_control.php method=post>";
         echo "<input type=submit value=変更>";
         echo "<input type=hidden name=id value='".$id."'>";
+        echo "<input type=hidden name=flag value='".$flag."'>";
         echo "</form>";
         echo "</td>";
 
