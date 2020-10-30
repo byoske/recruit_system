@@ -89,6 +89,7 @@ foreach ($table_datas as $table_name => $table_data) {
         echo "<form action=../user_delete/user_delete.php method=post>";
         echo "<input type=submit value=削除>";
         echo "<input type=hidden name=id value='".$id."'>";
+        echo "<input type=hidden name=flag value='".$flag."'>";
         echo "</td>";
         echo "</form>";
         echo "</td>";

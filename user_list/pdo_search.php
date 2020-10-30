@@ -4,6 +4,7 @@ require_once('../config.php');
 
 
 /*  戻ってもバッファに残るようにする  */
+
 header('Expires:-1');
 header('Cache-Control:');
 header('Pragma:');
@@ -70,7 +71,7 @@ if(empty($_POST)) {
 </head>
 <body>
 
-<a href='List_meny.php'>戻る</a>
+<a href='../user_list/List_meny.php'>戻る</a>
 <p><?=htmlspecialchars($yourname, ENT_QUOTES, 'UTF-8')."での検索結果"?><?=$row_count?>件です。</p>
 
 
@@ -106,6 +107,8 @@ if($row_count != 0){
     echo "<form action=../user_delete/user_delete.php method=post>";
     echo "<input type=submit value=削除>";
     echo "<input type=hidden name=id value='".$id."'>";
+    echo "<input type=hidden name=flag value='".$flag."'>";
+    echo "<input type=hidden name=yourname value='".$_POST['yourname']."'>";
     echo "</td>";
     echo "</form>";
     echo "</td>";
