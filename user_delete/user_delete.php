@@ -19,4 +19,9 @@ try {
     echo $e->getMessage() . PHP_EOL;
 }
 }
-require('../user_list/user_List.php');
+if($_POST['flag']==1){
+    require('../user_list/user_List.php');
+}
+else{
+    require('../user_list/pdo_search.php');
+}
