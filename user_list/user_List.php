@@ -28,11 +28,15 @@ while ($result = $stmt->fetch(PDO::FETCH_NUM)){
 $table_datas = array();
 foreach ($table_names as $key => $table_name) {
     $sql2 = "SELECT * FROM $table_name;";
+    /* ---- 変更箇所 ---- */
+    if($table_name == 'user'){
     $stmt2 = $dbh->query($sql2);
     $table_datas[$table_name] = array();
     while ($result2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
         $table_datas[$table_name][] = $result2;  // ここの配列への追加がまちがってた
     }
+    }
+    /* ----------------- */
 }
 
 foreach ($table_datas as $table_name => $table_data) {
