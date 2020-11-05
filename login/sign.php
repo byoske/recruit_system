@@ -38,7 +38,7 @@ form dl dd{
    </style>
  </head>
  <body>
-   <h1>ログインしてください</h1>
+   <h1>ログインしてください(イケメン)</h1>
    <form  action="login.php" method="post">
    <dl>
      <dt>ユーザー名</dt>
