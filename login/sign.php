@@ -1,4 +1,21 @@
+<?php
+function h($s){
+    return htmlspecialchars($s, ENT_QUOTES, 'utf-8');
+}
 
+session_start();
+//ログイン済みの場合
+if (isset($_SESSION['id']) && $_SESSION['id'] != 'admin') {
+    echo 'ようこそ' .  h($_SESSION['id']) . "（".h($_SESSION['name'])."）さん<br>";
+    echo '<meta http-equiv="refresh" content=" 2; url= ../user/user.php">';
+    exit;
+}else if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){
+    echo 'ようこそ 管理者さん';
+    echo '<meta http-equiv="refresh" content=" 2; url=../admin/admin.php">';
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="ja">
  <head>
