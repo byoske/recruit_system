@@ -75,7 +75,7 @@ if(empty($_POST)) {
 <p><?=htmlspecialchars($yourname, ENT_QUOTES, 'UTF-8')."での検索結果"?><?=$row_count?>件です。</p>
 
 
-<table border='1'>
+<table border=1 style=border-collapse:collapse>
 <tr><td>ID</td><td>NAME</td><td>MAIL</td><td>CREATED</td></tr>
 
 <?php
@@ -88,8 +88,8 @@ if($row_count != 0){
 	<td><?=htmlspecialchars($row['NAME'],ENT_QUOTES,'UTF-8')?></td>
 	<td><?=htmlspecialchars($row['MAIL'],ENT_QUOTES,'UTF-8')?></td>
 	<td><?=htmlspecialchars($row['CREATED'],ENT_QUOTES,'UTF-8')?></td>
-
  <?php
+
 
 
 
@@ -117,6 +117,7 @@ if($row_count != 0){
     ?>
 <?php
     }
+
 
 }
 ?>
