@@ -32,8 +32,12 @@ input[type=date]{
 input[name=btn_confirm],
 input[name=btn_submit],
 input[name=btn_back],
-input[name=reset] {
-	margin-top: 10px;
+input[name=reset],
+button[name=submit],
+input[name=back]
+{
+
+    text-align: center;
 	padding: 5px 20px;
 	font-size: 100%;
 	color: #fff;
@@ -51,7 +55,7 @@ select{
 	background: #ddf0ff;
 	width:58px;
 }
-select[name=pur],
+select[name =pur],
 select[name=pur2],
 select[name=pur3],
 select[name=stat]{
