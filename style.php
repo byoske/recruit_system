@@ -51,7 +51,7 @@ select{
 	background: #ddf0ff;
 	width:58px;
 }
-select[name=pur1],
+select[name=pur],
 select[name=pur2],
 select[name=pur3],
 select[name=stat]{
