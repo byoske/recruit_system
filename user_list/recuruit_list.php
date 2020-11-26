@@ -59,54 +59,35 @@ try{
 <meta charset="utf-8">
 </head>
 <body>
-<p><?=$row_count?>件です。</p>
+
 
 
 
 <table border='0'>
+<u>
+<font color="#ff4500">
+<h2>活動中</h2>
+</font>
+</u>
 <?php
 
 if($row_count != 0){
     foreach($rows as $row){
 ?>
-
-	<td><?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></td>
+<tr>
+	<td><a href = '../user_list/List_meny.php'>・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
 	<?php if($row['PURPOSE1']!=null){?>
+	<td>［</td>
 	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?></td> <?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
 	<td><?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?></td><?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
 	<td><?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?></td><?php }?>
+	<td>］</td>
+</tr>
 
-
- <?php
-
-
-/*
-    $flag = 0;
-    echo "<td>";
-    echo "<form action=../user_initialize/user_control.php method=post>";
-    echo "<input type=submit value=変更>";
-    echo "<input type=hidden name=id value='".$id."'>";
-    echo "<input type=hidden name=flag value='".$flag."'>";
-    echo "</form>";
-    echo "</td>";
-
-
-    echo "<td>";
-    echo "<form action=../user_delete/user_delete.php method=post>";
-    echo "<input type=submit value=削除>";
-    echo "<input type=hidden name=id value='".$id."'>";
-    echo "<input type=hidden name=flag value='".$flag."'>";
-    echo "<input type=hidden name=yourname value='".$_POST['yourname']."'>";
-    echo "</td>";
-    echo "</form>";
-    echo "</td>";*/
-
-    echo "</tr>";
-    ?>
 <?php
-    }
 
+    }
 }
 ?>
