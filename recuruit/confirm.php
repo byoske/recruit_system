@@ -1,43 +1,45 @@
 <?php
 
-session_start();
-require_once('../config.php');
-require_once('../style.php');
-$id = $_SESSION['id'];
-try {
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
-    $stmt = $pdo->prepare('select * from USER where ID = ?');
-    $stmt->execute([$id]);
-    $row = $stmt->fetch(PDO::FETCH_ASSOC);
-} catch (\Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
-}
+    session_start();
+    require_once('../config.php');
+    require_once ('droplist.php');
+    require_once ('../style.php');
+    $id = $_SESSION['id'];
+    try {
+        $pdo = new PDO(DSN, DB_USER, DB_PASS);
+        $stmt = $pdo->prepare('select * from USER where ID = ?');
+        $stmt->execute([$id]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
 
-// フォームから送信されたデータを各変数に格納
+        // フォームから送信されたデータを各変数に格納
 
-$name = $row['NAME'];
-$_SESSION['Company'] = $_POST['Company'];
-$_SESSION['address_re'] = $_POST['address_re'];
-$_SESSION['tel'] = $_POST['TEL'];
-$_SESSION['date'] = $_POST['date'];
-$_SESSION['taime1'] = $_POST['time1'];
-$_SESSION['taime2'] = $_POST['time2'];
-$_SESSION['min1'] = $_POST['min1'];
-$_SESSION['min2'] = $_POST['min2'];
-$_SESSION['pur1'] = $purpose[$_POST['pur']];
-$_SESSION['pur2'] = $purpose[$_POST['pur2']];
-$_SESSION['pur3'] = $purpose[$_POST['pur3']];
-$_SESSION['stat'] = $status[$_POST['stat']];
-$_SESSION['Contents']  = $_POST["Contents"];
-$_SESSION['Schedule']  = $_POST["Schedule"];
-$_SESSION['Remarks'] = $_POST["Remarks"];
+        $name = $row['NAME'];
+        $_SESSION['Company'] = $_POST['Company'];
+        $_SESSION['Company2'] = $_POST['Company2'];
+        $_SESSION['address_re'] = $_POST['address_re'];
+        $_SESSION['tel'] = $_POST['TEL'];
+        $_SESSION['date'] = $_POST['date'];
+        $_SESSION['taime1'] = $_POST['time1'];
+        $_SESSION['taime2'] = $_POST['time2'];
+        $_SESSION['min1'] = $_POST['min1'];
+        $_SESSION['min2'] = $_POST['min2'];
+        $_SESSION['pur1'] = $purpose[$_POST['pur']];
+        $_SESSION['pur2'] = $purpose[$_POST['pur2']];
+        $_SESSION['pur3'] = $purpose[$_POST['pur3']];
+        if($_POST["Contents"] != "NULL"){
+        $_SESSION['Contents']  = $_POST["Contents"];
+        $_SESSION['Schedule']  = $_POST["Schedule"];
+        $_SESSION['Remarks'] = $_POST["Remarks"];
+        }
+        //配列の値の入れ直し
 
-//配列の値の入れ直し
 
 
 
-
-// 送信ボタンが押されたら
+    // 送信ボタンが押されたら
 
 ?>
 <html lang="ja">
@@ -50,7 +52,7 @@ $_SESSION['Remarks'] = $_POST["Remarks"];
 <div><h1>Company Name</h1></div>
 <div><h2>お問い合わせ</h2></div>
 <div>
-    <form action="confirm.php" method="post">
+    <form action="recuruit_send.php" method="post">
             <input type="hidden" name="name" value="<?php echo $name; ?>">
 
 
@@ -64,7 +66,9 @@ $_SESSION['Remarks'] = $_POST["Remarks"];
                 </div>
                 <div class="element_wrap">
                     <label>企業名</label>
-                    <p><?php echo $_SESSION['Company']; ?></p>
+                    <p><?php echo $_SESSION['Company']; ?></p></br>
+                    <label>フリガナ</label>
+                    <p><?php echo $_SESSION['Company2']; ?></p>
                 </div>
                  <div class="element_wrap">
                     <label>住所</label>
@@ -84,12 +88,10 @@ $_SESSION['Remarks'] = $_POST["Remarks"];
                 </div>
                 <div class="element_wrap">
                     <label>目的</label>
-                    <p><?php echo  $_SESSION['pur1']." and ". $_SESSION['pur2']." and ". $_SESSION['pur3']; ?></p>
+                    <p><?php echo  $_SESSION['pur1']."　　". $_SESSION['pur2']."　　". $_SESSION['pur3']; ?></p>
                 </div>
-                <div class="element_wrap">
-                    <label>採用状況</label>
-                    <p><?php echo  $_SESSION['stat'] ?></p>
-                </div>
+
+                <?php if($_POST["Contents"] != "NULL"){?>
                 <div class="element_wrap">
                     <label>実施内容</label>
                     <p><?php echo nl2br( $_SESSION['Contents']); ?></p>
@@ -101,7 +103,7 @@ $_SESSION['Remarks'] = $_POST["Remarks"];
                 <div class="element_wrap">
                     <label>備考</label>
                     <p><?php echo nl2br( $_SESSION['Remarks']); ?></p>
-                </div>
+                </div><?php }?>
             </div>
         <input type="button" name = "back"value="内容を修正する" onclick="history.back()">
         <button type="submit" name="submit">送信する</button>
