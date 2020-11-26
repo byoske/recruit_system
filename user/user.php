@@ -27,7 +27,7 @@
  	<ul>
  		<li><a href = "user_Setting.php">ユーザー設定</a>
  		<li><a href = "../recuruit/recuruit_report_top.php">就職活動報告</a>
- 		<li><a href = "../recuruit/recuruit_report.php">就職活動実績閲覧</a>
+ 		<li><a href = "../recuruit/company_list.php">就職活動実績閲覧</a>
  		<li><a href = "../logout/logout.php">ログアウト</a>
  	</ul>
  </p1>
