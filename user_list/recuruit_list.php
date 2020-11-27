@@ -75,7 +75,7 @@ if($row_count != 0){
     foreach($rows as $row){
 ?>
 <tr>
-	<td><a href = '../user_list/List_meny.php'>・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
+	<td><a href = '../recuruit/recuruit_report_edit.php'>・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
 	<?php if($row['PURPOSE1']!=null){?>
 	<td>［</td>
 	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?></td> <?php }?>

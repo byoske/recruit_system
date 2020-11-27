@@ -6,6 +6,7 @@ try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->exec("create table if not exists REPORT(
+        CODE INT PRIMARY KEY AUTO_INCREMENT,
         ID varchar(255),
         NAME varchar(255),
         COMPANY varchar(255),
