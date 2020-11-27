@@ -8,6 +8,10 @@
 
   <h1>就職活動報告</h1>
 
+
+
+
+
  <p1>
      <a href = "../user/user.php">戻る</a><br>
 	 <a href = "../recuruit/recuruit_report.php" >新規作成</a>

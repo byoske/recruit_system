@@ -1,3 +1,48 @@
+<?php
+
+    session_start();
+    require_once('../config.php');
+    require_once ('droplist.php');
+    require_once ('../style.php');
+    $code = $_POST['code'];
+    try {
+        $pdo = new PDO(DSN, DB_USER, DB_PASS);
+        $stmt = $pdo->prepare('select * from REPORT where CODE = ?');
+        $stmt->execute([$code]);
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    } catch (\Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+        // フォームから送信されたデータを各変数に格納
+
+        $company = $row['COMPANY'];
+        $company2 = $row['COMPANY2'];
+        $address = $row['ADDRESS'];
+        $tel = $row['TEL'];
+        $date = $row['DATE'];
+        $hour1 = $row['HOUR1'];
+        $min1 = $row['MIN1'];
+        $hour2 = $row['HOUR2'];
+        $min2 = $row['MIN2'];
+        $purpose1 = $row['PURPOSE1'];
+        $purpose2 = $row['PURPOSE2'];
+        $purpose3 = $row['PURPOSE3'];
+        $contents = $row['CONTENTS'];
+        $schedule = $row['SCHEDULE'];
+        $remarks = $row['REMARKS'];
+
+
+        //配列の値の入れ直し
+
+
+
+
+    // 送信ボタンが押されたら
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ja">
  <head>
@@ -8,7 +53,7 @@
 
 <body>
 	<?php
-        session_start();
+//        session_start();
         require_once('../config.php');
         require_once ('../style.php');
         require_once ('droplist.php');
@@ -23,7 +68,43 @@
              echo $e->getMessage() . PHP_EOL;
     }?>
 
+
+<div>
+                <?php echo $code; ?>
+               <div class="element_wrap">
+                    <label>企業名</label>
+                    <p><?php echo $company; ?></p>
+               </div>
+
+               <div class="element_wrap">
+                    <label>住所</label>
+                    <p><?php echo $address; ?></p>
+               </div>
+
+               <div class="element_wrap">
+                    <label>電話番号</label>
+                    <p><?php echo $tel; ?></p>
+               </div>
+
+               <div class="element_wrap">
+                    <label>日付</label>
+                    <p><?php echo $date; ?></p>
+               </div>
+
+               <div class="element_wrap">
+                    <label>時間</label>
+                    <p><?php echo $hour1; ?>時<?php echo $min1; ?>分～<?php echo $hour2; ?>時<?php echo $min2; ?>分</p>
+               </div>
+
+               <div class="element_wrap">
+                    <label>目的</label>
+                    <p><?php echo $purpose1; ?> <?php echo $purpose2; ?> <?php echo $purpose3; ?></p>
+               </div>
+            </div>
+
 	<form action="recuruit_send.php" method="post">
+
+<!--
     <div class="element_wrap">
     	<label for="i_Company">企業名</label>
     	<input id="i_Company" type="text" name="Company" value ="" placeholder="株式会社イケメン">
@@ -51,6 +132,8 @@
 		<select name = "time2"><?php echo $time1; ?></select>時
 		<select name = "min2" ><?php echo $min1;  ?></select>分
  	</div>
+-->
+
  	<div class="element_wrap">
  		<label for="i_purpose">目的</label>
  		<?php $pur = $pur1 = $pur2 = 0;

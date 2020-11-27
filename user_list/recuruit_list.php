@@ -63,31 +63,60 @@ try{
 
 
 
-<table border='0'>
+
 <u>
 <font color="#ff4500">
 <h2>活動中</h2>
 </font>
 </u>
+
+
+<table border='0'>
+
+
+<form name=form1 method=POST action="../recuruit/recuruit_report_edit.php">
+
 <?php
 
 if($row_count != 0){
     foreach($rows as $row){
 ?>
+
+
 <tr>
-	<td><a href = '../recuruit/recuruit_report_edit.php'>・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
+	<td>
+
+
+
+	<input type="hidden" name="code" value="<?php echo $row['CODE']; ?>">
+	<a href = "#" onClick="document.form1.submit();">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
+
+
+<!--
+	<form name="form1" method="POST" action="../recuruit/recuruit_report_edit.php">
+	<input type="hidden" name="code" value="<?php echo $row['CODE']; ?>">
+	<button type="submit"><?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></button>
+	</form>
+-->
+
+	</td>
+
 	<?php if($row['PURPOSE1']!=null){?>
 	<td>［</td>
-	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?></td> <?php }?>
-	<?php if($row['PURPOSE3']!=null){?>
+	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?></td> <?php }?>
+	<?php if($row['PURPOSE2']!=null){?>
 	<td><?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?></td><?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
 	<td><?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?></td><?php }?>
 	<td>］</td>
 </tr>
-
 <?php
 
     }
 }
 ?>
+</form>
+
+</table>
+</body>
+</html>
