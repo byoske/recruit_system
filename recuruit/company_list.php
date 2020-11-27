@@ -22,8 +22,8 @@
 	<input type="submit" value="表示"><br><br>
 	</form>
 </body>
-
 </html>
+
 
 
 <?php
@@ -104,19 +104,32 @@ foreach ($table_datas as $table_name => $table_data) {
             }
 
 
-
             echo "<td>";
             echo "・";
-            //echo $val;
-            echo "<a href = '../recuruit/company_search.php'>$val</a>";
-            //echo "<form action=../user_initialize/user_control.php method=post>";
+
+
+            echo "<td>";
+            echo "<form action=../recuruit/company_search.php method=post>";
+            echo "<input type=submit value='".$val."'>";
             echo "<input type=hidden name=id value='".$val."'>";
-            //            echo "</td>";
+
+            echo "</form>";
+            echo "</td>";
+
+
+/*
+            echo "<td>";
+            echo "<form action=../recuruit/company_search.php method=post name=form1>";
+            ?>
+            <a href = "javascript:document.form1.submit()"><?php echo $val?></A>
+            <input type=hidden name=id value="<?php echo $val ?>">
+
+            </html>
+            <?php
+
+*/
 
         }
-
-
-
 
         echo "</tr>";
 
@@ -126,9 +139,6 @@ foreach ($table_datas as $table_name => $table_data) {
 }
 
 ?>
-
-
-
 
 
 
