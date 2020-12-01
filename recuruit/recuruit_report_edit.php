@@ -4,7 +4,7 @@
     require_once('../config.php');
     require_once ('droplist.php');
     require_once ('../style.php');
-    $code = $_POST['code'];
+    $code = $_GET['code'];
     try {
         $pdo = new PDO(DSN, DB_USER, DB_PASS);
         $stmt = $pdo->prepare('select * from REPORT where CODE = ?');
