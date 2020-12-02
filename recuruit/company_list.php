@@ -104,30 +104,24 @@ foreach ($table_datas as $table_name => $table_data) {
             }
 
 
-            echo "<td>";
-            echo "・";
 
 
-            echo "<td>";
+            /*echo "<td>";
             echo "<form action=../recuruit/company_search.php method=post>";
             echo "<input type=submit value='".$val."'>";
             echo "<input type=hidden name=id value='".$val."'>";
 
             echo "</form>";
             echo "</td>";
+*/
 
-
-/*
-            echo "<td>";
-            echo "<form action=../recuruit/company_search.php method=post name=form1>";
             ?>
-            <a href = "javascript:document.form1.submit()"><?php echo $val?></A>
-            <input type=hidden name=id value="<?php echo $val ?>">
 
+			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
             <?php
 
-*/
+
 
         }
 

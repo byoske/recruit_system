@@ -81,7 +81,7 @@ if($row_count != 0){
     foreach($rows as $row){
 ?>
 
-	<td><a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['code'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
+	<td><a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
 
 	<?php if($row['PURPOSE1']!=null){?>
 	<td>［</td>

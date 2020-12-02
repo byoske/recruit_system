@@ -1,7 +1,7 @@
 
 <?php
 require_once('../config.php');
-$val = $_POST['id'];
+$val = $_GET['id'];
 ?>
 
 <!DOCTYPE html>
@@ -79,17 +79,11 @@ if($row_count != 0){
     foreach($rows as $row){
         $company = $row['DATE']." ".$row['PURPOSE1']." " .$row['PURPOSE2']." ".$row['PURPOSE3'];
 
-        echo '<br>';
-        echo "<form action=../recuruit/company_details.php method=post>";
-        echo "<input type=submit value='".$company."'>";
-        echo "<input type=hidden name=id value='".$row['CODE']."'>";
-        echo "</form>";
-
 ?>
-
-
+<tr>
+<td><a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($company,ENT_QUOTES,'UTF-8')?></a></td>
+</tr>
 	<?php
-	echo '<br>';
     }
 
 

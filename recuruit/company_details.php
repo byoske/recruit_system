@@ -1,3 +1,3 @@
 <?php
-$val = $_POST['id'];
+$val = $_GET['code'];
 echo "企業のコードは ".$val;
