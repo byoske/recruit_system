@@ -29,20 +29,20 @@
 	<form action="confirm.php" method="post">
      <div class="element_wrap">
     	<label for="i_Company">企業名</label>
-    	<input id="i_Company" type="text" name="Company" value ="" placeholder="株式会社イケメン"><br>
+    	<input required id="i_Company" type="text" name="company" value ="" placeholder="株式会社イケメン"><br>
 
     	<label for="i_Company">フリガナ</label>
-    	<input id="i_Company" type="text" name="Company2" value ="" placeholder="カブシキガイシャイケメン">
+    	<input required id="i_Company" type="text" name="company2" value ="" placeholder="カブシキガイシャイケメン">
     </div>
 
  	<div class="element_wrap">
  		<label for="i_address">住所</label>
- 		<input required  type="text" name ="address_re" value="" placeholder="東京都千代田区千代田１−１">
+ 		<input required  type="text" name ="address" value="" placeholder="東京都千代田区千代田１−１">
  	</div>
 
  	<div class="element_wrap">
  		<label for="i_tel">電話番号</label>
- 		<input required id="i_tel" type="tel" name="TEL"  value ="" placeholder="080-1234-5678">
+ 		<input required id="i_tel" type="tel" name="tel"  value ="" placeholder="080-1234-5678">
  	</div>
 
  	<div class="element_wrap">
@@ -56,9 +56,9 @@
  		for($i=0;$i <= 23; $i++)$time1 .='<option value="'.$i.'">'.$i.'</option>';
  		for($c=0;$c <= 55;$c += 5)$min1  .='<option value="'.$c.'">'.$c.'</option>';
  		?>
- 		<select name = "time1"><?php echo $time1; ?></select>時
+ 		<select name = "hour1"><?php echo $time1; ?></select>時
  		<select name = "min1" ><?php echo $min1;  ?></select>分～
-		<select name = "time2"><?php echo $time1; ?></select>時
+		<select name = "hour2"><?php echo $time1; ?></select>時
 		<select name = "min2" ><?php echo $min1;  ?></select>分
  	</div>
 
@@ -67,9 +67,9 @@
  		<?php $pur =$pur1 = 0;
  		for($i=1;$i <= 4;$i++)$pur .='<option value="'.$i.'">'.$purpose[$i].'</option>';
         ?>
-        <select name = "pur" ><?php echo $pur; ?></select>
-        <select name = "pur2"><?php echo $pur; ?></select>
-        <select name = "pur3"><?php echo $pur; ?></select>
+        <select name = "purpose1" ><?php echo $pur; ?></select>
+        <select name = "purpose2"><?php echo $pur; ?></select>
+        <select name = "purpose3"><?php echo $pur; ?></select>
  	</div>
 
 

@@ -53,6 +53,13 @@ try{
 
 ?>
 
+<?php
+if(!empty($_GET['re'])){
+    echo "aaaaaaa";
+}
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,13 +79,11 @@ try{
 
 
 <table border='0'>
-
-
-
 <?php
 
 if($row_count != 0){
     foreach($rows as $row){
+        if($row['CONTENTS'] == NULL){
 ?>
 
 	<td><a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
@@ -95,9 +100,12 @@ if($row_count != 0){
 
 <?php
 
+        }
     }
 }
 ?>
+</table>
+
 
 </body>
 </html>

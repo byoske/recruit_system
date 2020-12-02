@@ -16,20 +16,29 @@
 
         // フォームから送信されたデータを各変数に格納
 
-        $name = $row['NAME'];
-        $_SESSION['Company'] = $_POST['Company'];
-        $_SESSION['Company2'] = $_POST['Company2'];
-        $_SESSION['address_re'] = $_POST['address_re'];
-        $_SESSION['tel'] = $_POST['TEL'];
-        $_SESSION['date'] = $_POST['date'];
-        $_SESSION['taime1'] = $_POST['time1'];
-        $_SESSION['taime2'] = $_POST['time2'];
-        $_SESSION['min1'] = $_POST['min1'];
-        $_SESSION['min2'] = $_POST['min2'];
-        $_SESSION['pur1'] = $purpose[$_POST['pur']];
-        $_SESSION['pur2'] = $purpose[$_POST['pur2']];
-        $_SESSION['pur3'] = $purpose[$_POST['pur3']];
-        if($_POST["Contents"] != "NULL"){
+    $name = $row['NAME'];
+    $_SESSION['Company'] = $_POST['company'];
+    $_SESSION['Company2'] = $_POST['company2'];
+    $_SESSION['address_re'] = $_POST['address'];
+    $_SESSION['tel'] = $_POST['tel'];
+    $_SESSION['date'] = $_POST['date'];
+    $_SESSION['taime1'] = $_POST['hour1'];
+    $_SESSION['taime2'] = $_POST['hour2'];
+    $_SESSION['min1'] = $_POST['min1'];
+    $_SESSION['min2'] = $_POST['min2'];
+    if($_POST["Contents"] == "NULL"){
+        $_SESSION['pur1'] = $purpose[$_POST['purpose1']];
+        $_SESSION['pur2'] = $purpose[$_POST['purpose2']];
+        $_SESSION['pur3'] = $purpose[$_POST['purpose3']];
+        $_SESSION['Contents']  = null;
+        $_SESSION['Schedule']  = null;
+        $_SESSION['Remarks'] = null;
+    }
+    if($_POST["Contents"] != "NULL"){
+        $_SESSION['code'] = $_POST['code'];
+        $_SESSION['pur1'] = $_POST['purpose1'];
+        $_SESSION['pur2'] = $_POST['purpose2'];
+        $_SESSION['pur3'] = $_POST['purpose3'];
         $_SESSION['Contents']  = $_POST["Contents"];
         $_SESSION['Schedule']  = $_POST["Schedule"];
         $_SESSION['Remarks'] = $_POST["Remarks"];

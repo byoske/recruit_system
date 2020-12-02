@@ -102,57 +102,23 @@
                </div>
             </div>
 
-	<form action="recuruit_send.php" method="post">
+	<form action="confirm.php" method="post">
 
-<!--
-    <div class="element_wrap">
-    	<label for="i_Company">企業名</label>
-    	<input id="i_Company" type="text" name="Company" value ="" placeholder="株式会社イケメン">
-    </div>
- 	<div class="element_wrap">
- 		<label for="i_address">住所</label>
- 		<input id="i_address" type="text" name ="address" value="" placeholder="東京都千代田区千代田１−１">
- 	</div>
- 	<div class="element_wrap">
- 		<label for="i_tel">電話番号</label>
- 		<input id="i_tel" type="tel" name="TEL" value ="" inputmode="tel" placeholder="08012345678">
- 	</div>
- 	<div class="element_wrap">
- 		<label for="i_date">日付</label>
- 		<input id ="i_date" type="date" name="date" value="<?php echo date('Y年m月d日')?>">
- 	</div>
- 	<div class="element_wrap">
- 		<label for="i_time">時間</label>
- 		<?php $time1 = $time2 = $min1 = $min2 = 0;
- 		for($i=0;$i <= 23; $i++)$time1 .='<option value="'.$i.'">'.$i.'</option>';
- 		for($c=0;$c <= 55;$c += 5)$min1  .='<option value="'.$c.'">'.$c.'</option>';
- 		?>
- 		<select name = "time1"><?php echo $time1; ?></select>時
- 		<select name = "min1" ><?php echo $min1;  ?></select>分～
-		<select name = "time2"><?php echo $time1; ?></select>時
-		<select name = "min2" ><?php echo $min1;  ?></select>分
- 	</div>
--->
 
- 	<div class="element_wrap">
- 		<label for="i_purpose">目的</label>
- 		<?php $pur = $pur1 = $pur2 = 0;
- 		for($i=1;$i <= 4;$i++)$pur .='<option value="'.$i.'">'.$purpose[$i].'</option>';
- 		for($i=1;$i <= 4;$i++)$pur1 .='<option value="'.$i.'">'.$purpose[$i].'</option>';
- 		for($i=1;$i <= 4;$i++)$pur2 .='<option value="'.$i.'">'.$purpose[$i].'</option>';
- 		?>
-        <select name = "pur1" ><?php echo $pur; ?></select>
-        <select name = "pur2"><?php echo $pur1; ?></select>
-        <select name = "pur3"><?php echo $pur2; ?></select>
+	<input type="hidden" name="company" value="<?php echo $company;?>" >
+    <input type="hidden" name="company2" value= "<?php echo $company2;?>" >
+	<input type="hidden" name="address" value= "<?php echo $address;?>" >
+	<input type="hidden" name="tel" value= "<?php echo $tel;?>" >
+	<input type="hidden" name="date" value= "<?php echo $date;?>" >
+	<input type="hidden" name="hour1" value= "<?php echo $hour1;?>" >
+    <input type="hidden" name="hour2" value= "<?php echo $hour2;?>" >
+    <input type="hidden" name="min1" value= "<?php echo $min1;?>" >
+    <input type="hidden" name="min2" value= "<?php echo $min2;?>" >
+    <input type="hidden" name="purpose1" value= "<?php echo $purpose1;?>" >
+    <input type="hidden" name="purpose2" value= "<?php echo $purpose2;?>" >
+    <input type="hidden" name="purpose3" value= "<?php echo $purpose3;?>" >
+	<input type="hidden" name="code" value= "<?php echo $code;?>" >
 
- 	</div>
- 	<div class="element_wrap">
- 		<label for="i_status">採用状況</label>
- 		<?php $stat = 0;
- 		for($i=1;$i <= 6;$i++)$stat .='<option value="'.$i.'">'.$status[$i].'</option>';
- 		?>
- 		<select name = "stat" ><?php echo $stat; ?></select>
- 	</div>
 
 	<div class="element_wrap">
 		<label for="i_contents">実施内容</label>
@@ -170,6 +136,7 @@
 	<INPUT type="reset" name="reset" value="入力内容をリセットする">
     <input type="submit"name="btn_confirm" value="入力内容を確認する">
     <p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
+	 </form>
 
 </body>
 </html>
