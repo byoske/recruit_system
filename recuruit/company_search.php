@@ -31,7 +31,7 @@ try{
     if($statement){
         //ポストされた値をLIKEで使えるように変換をしている
 
-        $like_yourname = "%".$val."%";
+        $like_yourname = $val;
         //プレースホルダへ実際の値を設定する
         $statement->bindValue(':name', $like_yourname, PDO::PARAM_STR);
 
