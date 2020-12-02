@@ -57,7 +57,7 @@ while ($result = $stmt->fetch(PDO::FETCH_NUM)){
 
 $table_datas = array();
 foreach ($table_names as $key => $table_name) {
-    $sql2 = "SELECT COMPANY FROM $table_name;";
+    $sql2 = "SELECT DISTINCT COMPANY FROM $table_name;";
     /* ---- 変更箇所 ---- */
 
    if($table_name == 'report'){
