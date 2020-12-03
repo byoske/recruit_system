@@ -53,12 +53,7 @@ try{
 
 ?>
 
-<?php
-if(!empty($_GET['re'])){
-    echo "aaaaaaa";
-}
 
-?>
 
 <!DOCTYPE html>
 <html>
@@ -107,5 +102,33 @@ if($row_count != 0){
 </table>
 
 
+<font color="#ff4500">
+<h2><a href = "recuruit_report_top.php?re=1">活動実績</a></h2>
+</font>
+</u>
+<table border='0'>
+<?php
+//if(!empty($_GET['re'])){
+    if($row_count != 0){
+        foreach($rows as $row){
+            if($row['CONTENTS'] != NULL){
+?>
+<td><a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
+
+	<?php if($row['PURPOSE1']!=null){?>
+	<td>［</td>
+	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?></td> <?php }?>
+	<?php if($row['PURPOSE3']!=null){?>
+	<td><?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?></td><?php }?>
+	<?php if($row['PURPOSE3']!=null){?>
+	<td><?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?></td><?php } ?>
+	<td>］</td>
+	</tr>
+<?php
+  //          }
+        }
+    }
+}?>
+</table>
 </body>
 </html>
