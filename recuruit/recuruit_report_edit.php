@@ -161,10 +161,11 @@
 	 </form>
 
 	<?php }else{?>
-	<form  method="post"action="recuruit_report.php">
-	 <input type="hidden" name="code" value="<?php echo $code;?>" >
-	 <input type="submit"name="init"  value="新規追加">
-	</form>
+
+	<a href = "recuruit_report.php?code=<?php echo $code?>" >
+	<input type = "submit" value = "新規追加">
+	</a>
+
 	<?php }?>
 
 </body>

@@ -23,7 +23,8 @@ try {
         PURPOSE3 varchar(255),
         CONTENTS text(255),
         SCHEDULE text(255),
-        REMARKS text(255)
+        REMARKS text(255),
+        RESULT varchar(100)
 
       )");
 } catch (Exception $e) {
