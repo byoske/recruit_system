@@ -20,7 +20,8 @@ $id = $_SESSION['id'];
 try{
     $dbh = new PDO(DSN, DB_USER, DB_PASS);
 
-        $statement = $dbh->prepare("SELECT * FROM REPORT WHERE  ID LIKE (:name) ");
+        $statement = $dbh->prepare("SELECT * FROM REPORT WHERE  ID LIKE (:name) ORDER BY COMPANY ASC ");
+
 
     if($statement){
         //ポストされた値をLIKEで使えるように変換をしている
@@ -64,16 +65,12 @@ try{
 
 
 
-
-
-<u>
 <font color="#ff4500">
 <h2>活動中</h2>
 </font>
-</u>
 
 
-<table border='0'>
+
 <?php
 
 if($row_count != 0){
@@ -81,17 +78,17 @@ if($row_count != 0){
         if($row['CONTENTS'] == NULL){
 ?>
 
-	<td><a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
+	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 
 	<?php if($row['PURPOSE1']!=null){?>
-	<td>［</td>
-	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?></td> <?php }?>
+	［
+	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?><?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
-	<td><?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?></td><?php }?>
+	<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
-	<td><?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?></td><?php } ?>
-	<td>］</td>
-	</tr>
+	<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php } ?>
+	］<br>
+
 
 <?php
 
@@ -99,36 +96,49 @@ if($row_count != 0){
     }
 }
 ?>
-</table>
+
 
 
 <font color="#ff4500">
-<h2><a href = "recuruit_report_top.php?re=1">活動実績</a></h2>
+<h2>活動実績</h2>
 </font>
 </u>
-<table border='0'>
+<?php $company = "initial";?>
+
 <?php
 //if(!empty($_GET['re'])){
     if($row_count != 0){
         foreach($rows as $row){
             if($row['CONTENTS'] != NULL){
 ?>
-<td><a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a></td>
 
+<?php if($row['COMPANY'] != $company){?>
+<?php if($company != "initial"){?>
+<br>
+<?php }?>
+・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?>
+<?php }?>
+
+<?php if($row['COMPANY'] == $company){?>
+➡
+<?php }?>
+<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">
 	<?php if($row['PURPOSE1']!=null){?>
-	<td>［</td>
-	<td><?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?></td> <?php }?>
+	［
+	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
-	<td><?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?></td><?php }?>
+	<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
 	<?php if($row['PURPOSE3']!=null){?>
-	<td><?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?></td><?php } ?>
-	<td>］</td>
-	</tr>
+	<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
+	］
+</a>
+
 <?php
   //          }
         }
+        $company = $row['COMPANY'];
+
     }
 }?>
-</table>
 </body>
 </html>
