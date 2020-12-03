@@ -16,8 +16,14 @@
         $id = $_SESSION['id'];
          try {
              $pdo = new PDO(DSN, DB_USER, DB_PASS);
-             $stmt = $pdo->prepare('select * from USER where ID = ?');
-            $stmt->execute([$id]);
+             if(empty($_POST)){
+                 $stmt = $pdo->prepare('select * from USER where ID = ?');
+                $stmt->execute([$id]);
+             }else{
+                 $code = $_POST['code'];
+                 $stmt = $pdo->prepare('select * from REPORT where CODE = ?');
+                 $stmt->execute([$code]);
+             }
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (\Exception $e) {
              echo $e->getMessage() . PHP_EOL;
@@ -29,20 +35,20 @@
 	<form action="confirm.php" method="post">
      <div class="element_wrap">
     	<label for="i_Company">企業名</label>
-    	<input required id="i_Company" type="text" name="company" value ="" placeholder="株式会社イケメン"><br>
+    	<input required id="i_Company" type="text" name="company" value ="<?php //if(!empty($_POST['code'])) echo $row['COMPANY']; ?>" placeholder="株式会社イケメン"><br>
 
     	<label for="i_Company">フリガナ</label>
-    	<input required id="i_Company" type="text" name="company2" value ="" placeholder="カブシキガイシャイケメン">
+    	<input required id="i_Company" type="text" name="company2" value ="<?php //if(!empty($_POST['code'])) echo $row['COMPANY2']; ?>" placeholder="カブシキガイシャイケメン">
     </div>
 
  	<div class="element_wrap">
  		<label for="i_address">住所</label>
- 		<input required  type="text" name ="address" value="" placeholder="東京都千代田区千代田１−１">
+ 		<input required  type="text" name ="address" value="<?php //if(!empty($_POST['code'])) echo $row['ADDRESS']; ?>" placeholder="東京都千代田区千代田１−１">
  	</div>
 
  	<div class="element_wrap">
  		<label for="i_tel">電話番号</label>
- 		<input required id="i_tel" type="tel" name="tel"  value ="" placeholder="080-1234-5678">
+ 		<input required id="i_tel" type="tel" name="tel"  value ="<?php //if(!empty($_POST['code'])) echo $row['TEL']; ?>" placeholder="080-1234-5678">
  	</div>
 
  	<div class="element_wrap">

@@ -5,6 +5,7 @@
     require_once ('droplist.php');
     require_once ('../style.php');
     $code = $_GET['code'];
+    $flg =  $_GET['flg'];
     try {
         $pdo = new PDO(DSN, DB_USER, DB_PASS);
         $stmt = $pdo->prepare('select * from REPORT where CODE = ?');
@@ -31,6 +32,8 @@
         $contents = $row['CONTENTS'];
         $schedule = $row['SCHEDULE'];
         $remarks = $row['REMARKS'];
+
+
 
 
         //配列の値の入れ直し
@@ -100,8 +103,26 @@
                     <label>目的</label>
                     <p><?php echo $purpose1; ?> <?php echo $purpose2; ?> <?php echo $purpose3; ?></p>
                </div>
+
+               <?php if($flg == 1){?>
+               		<div class="element_wrap">
+                    <label>実施内容</label>
+                    <p><?php echo $contents; ?></p>
+              		</div>
+
+         	 	     <div class="element_wrap">
+                    <label>今後のスケジュール</label>
+                    <p><?php echo $schedule; ?></p>
+            	    </div>
+
+              		<div class="element_wrap">
+                    <label>備考</label>
+                    <p><?php echo $remarks; ?></p>
+               		</div>
+              	<?php }?>
             </div>
 
+	<?php  if($flg == 0){ ?>
 	<form action="confirm.php" method="post">
 
 
@@ -135,10 +156,19 @@
 
 	<INPUT type="reset" name="reset" value="入力内容をリセットする">
     <input type="submit"name="btn_confirm" value="入力内容を確認する">
+
     <p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
 	 </form>
 
+	<?php }else{?>
+	<form  method="post"action="recuruit_report.php">
+	 <input type="hidden" name="code" value="<?php echo $code;?>" >
+	 <input type="submit"name="init"  value="新規追加">
+	</form>
+	<?php }?>
+
 </body>
+</script>
 </html>
 
 

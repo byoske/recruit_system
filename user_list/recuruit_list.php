@@ -78,7 +78,7 @@ if($row_count != 0){
         if($row['CONTENTS'] == NULL){
 ?>
 
-	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
+	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 
 	<?php if($row['PURPOSE1']!=null){?>
 	［
@@ -122,7 +122,7 @@ if($row_count != 0){
 <?php if($row['COMPANY'] == $company){?>
 ➡
 <?php }?>
-<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>">
+<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
 	<?php if($row['PURPOSE1']!=null){?>
 	［
 	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
