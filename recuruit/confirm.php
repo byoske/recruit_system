@@ -27,6 +27,7 @@
     $_SESSION['min1'] = $_POST['min1'];
     $_SESSION['min2'] = $_POST['min2'];
     if($_POST["Contents"] == "NULL"){
+        $_SESSION['code2'] = $_POST['code'];
         $_SESSION['pur1'] = $purpose[$_POST['purpose1']];
         $_SESSION['pur2'] = $purpose[$_POST['purpose2']];
         $_SESSION['pur3'] = $purpose[$_POST['purpose3']];

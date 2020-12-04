@@ -1,9 +1,41 @@
 <?php
-
     session_start();
     require_once('../config.php');
     require_once ('droplist.php');
     require_once ('../style.php');
+
+    $id = $_SESSION['id'];
+
+    try {
+        $pdo = new PDO(DSN, DB_USER, DB_PASS);
+        $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
+        if(!empty($_POST['pass'])){
+            $pass = $_POST['pass_1'];
+            $stmt->execute([1,$id,$pass]);
+            echo "情報を更新しました";
+            echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
+            echo "<a href='recuruit_report_top.php'>次へ</a>";
+            exit;
+        }else if(!empty($_POST['failure'])){
+            $failure=$_POST['failure_1'];
+            $stmt->execute([0,$id,$failure]);
+            echo "情報を更新しました";
+            echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
+            echo "<a href='recuruit_report_top.php'>次へ</a>";
+            exit;
+        }
+    } catch (\Exception $e) {
+        echo $e->getMessage() . PHP_EOL;
+    }
+
+
+
+
+?>
+<?php
+
+
+
     $code = $_GET['code'];
     $flg =  $_GET['flg'];
     try {
@@ -56,24 +88,13 @@
 
 <body>
 	<?php
-//        session_start();
-        require_once('../config.php');
-        require_once ('../style.php');
-        require_once ('droplist.php');
 
-        $id = $_SESSION['id'];
-         try {
-             $pdo = new PDO(DSN, DB_USER, DB_PASS);
-             $stmt = $pdo->prepare('select * from USER where ID = ?');
-            $stmt->execute([$id]);
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        } catch (\Exception $e) {
-             echo $e->getMessage() . PHP_EOL;
-    }?>
+
+      ?>
 
 
 <div>
-                <?php echo $code; ?>
+
                <div class="element_wrap">
                     <label>企業名</label>
                     <p><?php echo $company; ?></p>
@@ -160,11 +181,22 @@
     <p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
 	 </form>
 
-	<?php }else{?>
+	<?php }else if($row['RESULT'] == null){?>
 
 	<a href = "recuruit_report.php?code=<?php echo $code?>" >
-	<input type = "submit" value = "新規追加">
+	<input type="hidden" name="pass" value="1">
+	<input name="btn_confirm"type = "submit" value = "新規追加">
 	</a>
+
+	<form action="recuruit_report_edit.php" method="post">
+	<input type="hidden" name="pass_1" value="<?php echo $company;?>" >
+	<input type="submit" name="pass" value="合格">
+	</form>
+
+	<form action="recuruit_report_edit.php" method="post">
+	<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
+	<input type="submit" name="failure" value="不合格">
+	</form>
 
 	<?php }?>
 

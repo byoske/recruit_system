@@ -112,19 +112,34 @@ if($row_count != 0){
             if($row['CONTENTS'] != NULL){
 ?>
 
-<?php if($row['COMPANY'] != $company){?>
+<?php if($row['COMPANY'] != $company ){?>
 <?php if($company != "initial"){?>
 <br>
 <?php }?>
-・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?>
+<?php if($row['RESULT'] == 1){
+            echo '<font color="#ff4500"> ';
+            echo "合格　　・";
+            echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
+            echo '</font>';
+        }else if($row['RESULT'] == null || $row['RESULT'] == 3){
+            echo "選考中　・";
+            echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
+        }else if($row['RESULT'] == 0){
+            echo  '<font color="#0000FF">';
+            echo "不合格　・";
+            echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
+            echo '</font>';
+        }
+
+?>
 <?php }?>
 
 <?php if($row['COMPANY'] == $company){?>
 ➡
 <?php }?>
 <a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
-	<?php if($row['PURPOSE1']!=null){?>
 	［
+	<?php if($row['PURPOSE1']!=null){?>
 	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
 	<?php if($row['PURPOSE2']!=null){?>
 	<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>

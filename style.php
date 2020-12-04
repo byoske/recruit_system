@@ -55,9 +55,9 @@ select{
 	background: #ddf0ff;
 	width:58px;
 }
-select[name=pur1],
-select[name=pur2],
-select[name=pur3],
+select[name=purpose1],
+select[name=purpose2],
+select[name=purpose3],
 select[name=stat]{
     padding: 5px 10px;
 	font-size: 86%;
@@ -82,7 +82,9 @@ input[name=btn_back] {
 
 
 }
-
+label [calss=合格]{
+	coler:#ff4300
+}
 label {
 	display: inline-block;
 	margin-bottom: 10px;

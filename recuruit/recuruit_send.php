@@ -56,6 +56,18 @@ if($pur1 == "選択")$pur1 = NULL;
 if($pur2 == "選択")$pur2 = NULL;
 if($pur3 == "選択")$pur3 = NULL;
 
+if($_SESSION['code2'] != null){
+try {
+    $code2 = $_SESSION['code2'];
+    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE CODE = ?');
+    $stmt->execute([3,$code2]);
+
+} catch (\Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+}
+
 if($Contents == NULL){
     try {
         $stmt = $pdo->prepare("insert into report(ID,NAME,COMPANY,COMPANY2,ADDRESS,TEL,DATE,HOUR1,MIN1,HOUR2,MIN2,PURPOSE1,PURPOSE2,PURPOSE3) value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
