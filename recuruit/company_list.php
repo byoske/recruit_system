@@ -17,7 +17,7 @@
 
 
 	キーワード検索<br>
-	<form action="pdo_search.php" method="post" style="display: inline">
+	<form action="company_list.php" method="post" style="display: inline">
 	<input type="text" name="yourname" required="required">
 	<input type="submit" value="表示"><br><br>
 	</form>
@@ -56,6 +56,7 @@ while ($result = $stmt->fetch(PDO::FETCH_NUM)){
 }
 
 $table_datas = array();
+
 foreach ($table_names as $key => $table_name) {
     $sql2 = "SELECT DISTINCT COMPANY FROM $table_name;";
     /* ---- 変更箇所 ---- */
@@ -69,6 +70,7 @@ foreach ($table_names as $key => $table_name) {
     }
 
 }
+
 
 foreach ($table_datas as $table_name => $table_data) {
 
@@ -102,38 +104,32 @@ foreach ($table_datas as $table_name => $table_data) {
             if($column_name == "ID"){
                 $id = $val;
             }
-
-
-
-
-            /*echo "<td>";
-            echo "<form action=../recuruit/company_search.php method=post>";
-            echo "<input type=submit value='".$val."'>";
-            echo "<input type=hidden name=id value='".$val."'>";
-
-            echo "</form>";
-            echo "</td>";
-*/
+            if (!isset($_POST['yourname'])  || $_POST['yourname'] === "" ){               //検索に何もない時
 
             ?>
 
 			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
             <?php
+            }
+
+            else{                                                                           //検索したとき
+                $yourname = $_POST['yourname'];
+                 if (strpos($val, $yourname) !== false) { ?>
 
 
+			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
+            </html>
 
-        }
 
-        echo "</tr>";
+			<?php
+                }
+            }
+            }
+                echo "</tr>";
 
 
     }
     echo "</table>";
 }
-
 ?>
-
-
-
-
