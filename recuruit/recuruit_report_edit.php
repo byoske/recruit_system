@@ -1,4 +1,5 @@
 <?php
+    //合格不合格のリザルトに入る値の処理
     session_start();
     require_once('../config.php');
     require_once ('droplist.php');
@@ -9,14 +10,14 @@
     try {
         $pdo = new PDO(DSN, DB_USER, DB_PASS);
         $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
-        if(!empty($_POST['pass'])){
+        if(!empty($_POST['pass'])){//合格ボタンを押されたら
             $pass = $_POST['pass_1'];
             $stmt->execute([1,$id,$pass]);
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
             echo "<a href='recuruit_report_top.php'>次へ</a>";
             exit;
-        }else if(!empty($_POST['failure'])){
+        }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
             $failure=$_POST['failure_1'];
             $stmt->execute([0,$id,$failure]);
             echo "情報を更新しました";
@@ -36,8 +37,8 @@
 
 
 
-    $code = $_GET['code'];
-    $flg =  $_GET['flg'];
+    $code = $_GET['code'];//活動中、活動実績のリンクを押した際に送信されるcodeを取得
+    $flg =  $_GET['flg'];//活動中からのリンクか判別するための変数
     try {
         $pdo = new PDO(DSN, DB_USER, DB_PASS);
         $stmt = $pdo->prepare('select * from REPORT where CODE = ?');
@@ -87,12 +88,6 @@
  <h1>就職活動実績報告画面</h1>
 
 <body>
-	<?php
-
-
-      ?>
-
-
 <div>
 
                <div class="element_wrap">
@@ -146,7 +141,7 @@
 	<?php  if($flg == 0){ ?>
 	<form action="confirm.php" method="post">
 
-
+	<!//////////confirmにて内容確認のために必要なものの定義///////////////>
 	<input type="hidden" name="company" value="<?php echo $company;?>" >
     <input type="hidden" name="company2" value= "<?php echo $company2;?>" >
 	<input type="hidden" name="address" value= "<?php echo $address;?>" >
@@ -181,19 +176,19 @@
     <p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
 	 </form>
 
-	<?php }else if($row['RESULT'] == null){?>
+	<?php }else if($row['RESULT'] == null){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
 
 	<a href = "recuruit_report.php?code=<?php echo $code?>" >
 	<input type="hidden" name="pass" value="1">
 	<input name="btn_confirm"type = "submit" value = "新規追加">
 	</a>
 
-	<form action="recuruit_report_edit.php" method="post">
+	<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
 	<input type="hidden" name="pass_1" value="<?php echo $company;?>" >
 	<input type="submit" name="pass" value="合格">
 	</form>
 
-	<form action="recuruit_report_edit.php" method="post">
+	<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
 	<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
 	<input type="submit" name="failure" value="不合格">
 	</form>

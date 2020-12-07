@@ -16,10 +16,10 @@
         $id = $_SESSION['id'];
          try {
              $pdo = new PDO(DSN, DB_USER, DB_PASS);
-             if(empty($_GET)){
+             if(empty($_GET)){//新規作成から飛んで来たらこっちのSQL
                  $stmt = $pdo->prepare('select * from USER where ID = ?');
                 $stmt->execute([$id]);
-             }else{
+             }else{//活動実績の内容から新規追加をしたらこっちのSQL
                  $code = $_GET['code'];
                  $stmt = $pdo->prepare('select * from REPORT where CODE = ?');
                  $stmt->execute([$code]);
@@ -31,7 +31,7 @@
 
 
     ?>
-
+	<!valueの中のemptyは新規追加から来た際のデータベースの中身取得して表示、>
 	<form action="confirm.php" method="post">
      <div class="element_wrap">
     	<label for="i_Company">企業名</label>

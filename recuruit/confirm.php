@@ -26,7 +26,7 @@
     $_SESSION['taime2'] = $_POST['hour2'];
     $_SESSION['min1'] = $_POST['min1'];
     $_SESSION['min2'] = $_POST['min2'];
-    if($_POST["Contents"] == "NULL"){
+    if($_POST["Contents"] == "NULL"){//新規作成
         $_SESSION['code2'] = $_POST['code'];
         $_SESSION['pur1'] = $purpose[$_POST['purpose1']];
         $_SESSION['pur2'] = $purpose[$_POST['purpose2']];
@@ -35,7 +35,7 @@
         $_SESSION['Schedule']  = null;
         $_SESSION['Remarks'] = null;
     }
-    if($_POST["Contents"] != "NULL"){
+    if($_POST["Contents"] != "NULL"){//実施内容等編集
         $_SESSION['code'] = $_POST['code'];
         $_SESSION['pur1'] = $_POST['purpose1'];
         $_SESSION['pur2'] = $_POST['purpose2'];

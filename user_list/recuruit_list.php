@@ -11,7 +11,7 @@ header('Pragma:');
 
 header("Content-type: text/html; charset=utf-8");
 
-session_start();
+
 require_once('../user_menu.php');
 $id = $_SESSION['id'];
 
@@ -19,7 +19,7 @@ $id = $_SESSION['id'];
 
 try{
     $dbh = new PDO(DSN, DB_USER, DB_PASS);
-
+        //レポートテーブル内の自分のidを昇順に取得
         $statement = $dbh->prepare("SELECT * FROM REPORT WHERE  ID LIKE (:name) ORDER BY COMPANY ASC ");
 
 
@@ -72,15 +72,17 @@ try{
 
 
 <?php
-
+//活動中の中に表示する内容
 if($row_count != 0){
     foreach($rows as $row){
         if($row['CONTENTS'] == NULL){
 ?>
 
+	<!リンクで変数を遷移先に渡しその内容表示　!>
 	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 
-	<?php if($row['PURPOSE1']!=null){?>
+
+	<?php if($row['PURPOSE1']!=null){//目的の内容が空なら表示しない?>
 	［
 	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?><?php }?>
 	<?php if($row['PURPOSE2']!=null){?>
@@ -106,26 +108,26 @@ if($row_count != 0){
 <?php $company = "initial";?>
 
 <?php
-//if(!empty($_GET['re'])){
     if($row_count != 0){
         foreach($rows as $row){
+            //実施内容の中身があるなら活動実績の方に表示
             if($row['CONTENTS'] != NULL){
 ?>
 
-<?php if($row['COMPANY'] != $company ){?>
-<?php if($company != "initial"){?>
+<?php if($row['COMPANY'] != $company ){//一つ前の会社名と同じでなければ?>
+<?php if($company != "initial"){//一番上に空白を入れない為の処理?>
 <br>
 <?php }?>
-<?php if($row['RESULT'] == 1){
-            echo '<font color="#ff4500"> ';
+<?php if($row['RESULT'] == 1){//リザルトの中身が合格なら
+            echo '<font color="#ff4500"> ';//赤
             echo "合格　　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
             echo '</font>';
-        }else if($row['RESULT'] == null || $row['RESULT'] == 3){
+        }else if($row['RESULT'] == null || $row['RESULT'] == 3){//選択なしor新規追加されたときにリザルトに入る値の時
             echo "選考中　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
-        }else if($row['RESULT'] == 0){
-            echo  '<font color="#0000FF">';
+        }else if($row['RESULT'] == 0){//不合格の時
+            echo  '<font color="#0000FF">';//青
             echo "不合格　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
             echo '</font>';
@@ -137,6 +139,7 @@ if($row_count != 0){
 <?php if($row['COMPANY'] == $company){?>
 ➡
 <?php }?>
+<! 活動実績の内容の表示処理>
 <a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
 	［
 	<?php if($row['PURPOSE1']!=null){?>
@@ -149,9 +152,8 @@ if($row_count != 0){
 </a>
 
 <?php
-  //          }
         }
-        $company = $row['COMPANY'];
+        $company = $row['COMPANY'];//一つ前のやつとおんなじか判別するための変数
 
     }
 }?>
