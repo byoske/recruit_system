@@ -80,7 +80,9 @@
 
 
 		<input type="hidden" name="Contents" value= "NULL" >
+		<?php if(!empty($_GET['code'])){?>
 		<input type="hidden" name="code" value= "<?php echo $code;?>" >
+		<?php }?>
 
 	<INPUT type="reset" name="reset" value="入力内容をリセットする">
     <input type="submit"name="btn_confirm" value="入力内容を確認する">
