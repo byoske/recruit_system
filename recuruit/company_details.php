@@ -20,6 +20,8 @@ try {
 
 // フォームから送信されたデータを各変数に格納
 
+$user_id = $row['ID'];          //adminだけ表示させる
+$user_name = $row['NAME'];      //adminだけ表示させる
 $company = $row['COMPANY'];
 $company2 = $row['COMPANY2'];
 $address = $row['ADDRESS'];
@@ -36,7 +38,7 @@ $contents = $row['CONTENTS'];
 $schedule = $row['SCHEDULE'];
 $remarks = $row['REMARKS'];
 
-
+$user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 //配列の値の入れ直し
@@ -77,6 +79,14 @@ $remarks = $row['REMARKS'];
 
 <div>
                 <?php echo $code; ?>
+
+                 <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){ ?>
+                 <div class="element_wrap">
+                    <label>名前</label>
+                    <p><?php echo $user_name; ?></p>
+                 </div>
+				<?php }?>
+
                <div class="element_wrap">
                     <label>企業名</label>
                     <p><?php echo $company; ?></p>
@@ -126,6 +136,7 @@ $remarks = $row['REMARKS'];
 
 
 	<form action="confirm.php" method="post">
+
 
 
 	<input type="hidden" name="company" value="<?php echo $company;?>" >
