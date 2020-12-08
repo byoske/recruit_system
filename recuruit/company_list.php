@@ -8,7 +8,19 @@
  </head>
  <h1>就職活動実績閲覧</h1>
 <head>
-<a href='../user/user.php'>戻る</a><br>
+
+<?php
+require_once('../config.php');
+session_start();
+if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
+    echo "<a href='../admin/admin.php'>戻る</a><br>";
+}
+else{
+    echo "<a href='../user/user.php'>戻る</a><br>";
+}
+?>
+
+
 <title>検索画面</title>
 <meta charset="utf-8">
 
@@ -21,14 +33,17 @@
 	<input type="text" name="yourname" required="required">
 	<input type="submit" value="表示"><br><br>
 	</form>
+
+	<form action="company_list.php" method="post" style="display: inline">
+	<input type="submit" value="全て表示"><br>
+	</form>
+
 </body>
 </html>
 
 
 
 <?php
-
-require_once('../config.php');
 
 
 try {

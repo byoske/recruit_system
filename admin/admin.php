@@ -11,7 +11,7 @@
   <li><a href = "admin_control.php">管理者設定</a>
  <li><a href = "../registrate/admin_signUp.php">ユーザー登録</a>
  <li><a href = "../user_list/List_meny.php">ユーザー検索・変更</a>
- <li><a href = "../websever/Browsig.php">就職活動実績閲覧</a>
+ <li><a href = "../recuruit/company_list.php">就職活動実績閲覧</a>
  <li><a href = "../logout/logout.php">ログアウト</a>
 
 
