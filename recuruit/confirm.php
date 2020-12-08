@@ -57,19 +57,17 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>お問い合わせフォーム</title>
+<title>内容確認</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div><h1>Company Name</h1></div>
-<div><h2>お問い合わせ</h2></div>
+
 <div>
     <form action="recuruit_send.php" method="post">
             <input type="hidden" name="name" value="<?php echo $name; ?>">
 
 
 
-            <h1 class="contact-title"> 内容確認</h1>
             <p>内容はこちらで宜しいでしょうか？<br>よろしければ「送信する」ボタンを押して下さい。</p>
             <div>
                <div class="element_wrap">

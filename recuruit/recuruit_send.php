@@ -57,16 +57,18 @@ if($pur2 == "選択")$pur2 = NULL;
 if($pur3 == "選択")$pur3 = NULL;
 
 //活動実績から新規追加をしたらここに入る
-if($_SESSION['code2'] != null){
-try {
-    $code2 = $_SESSION['code2'];
-    $pdo = new PDO(DSN, DB_USER, DB_PASS);
-    $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE CODE = ?');
-    $stmt->execute([3,$code2]);
+if(!empty($_POST['code'])){
+    if($_SESSION['code2'] != null){
+        try {
+         $code2 = $_SESSION['code2'];
+         $pdo = new PDO(DSN, DB_USER, DB_PASS);
+         $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE CODE = ?');
+         $stmt->execute([3,$code2]);
 
-} catch (\Exception $e) {
-    echo $e->getMessage() . PHP_EOL;
-}
+        } catch (\Exception $e) {
+          echo $e->getMessage() . PHP_EOL;
+        }
+    }
 }
 
 if($Contents == NULL){//新規作成の際のデータベースの登録内容

@@ -3,11 +3,15 @@
 <head>
 <title>お問い合わせフォーム</title>
 <style rel="stylesheet" type="text/css">
+
+
 body {
 	padding: 10px;
 	text-align: center;
 }
 
+
+/*
 h1 {
 	margin-bottom: 20px;
 	padding: 20px 0;
@@ -16,6 +20,7 @@ h1 {
 	border-top: 1px solid #999;
 	border-bottom: 1px solid #999;
 }
+*/
 
 input[type=text] ,
 input[type=password],
@@ -29,6 +34,7 @@ input[type=date]{
 	width:200px;
 }
 
+/*
 input[name=btn_confirm],
 input[name=btn_submit],
 input[name=btn_back],
@@ -47,6 +53,7 @@ input[name=back]
 	box-shadow: 0 3px 0 #2887d1;
 	background: #4eaaf1;
 }
+*/
 select{
     padding: 5px 10px;
 	font-size: 86%;
@@ -55,6 +62,9 @@ select{
 	background: #ddf0ff;
 	width:58px;
 }
+
+
+
 select[name=purpose1],
 select[name=purpose2],
 select[name=purpose3],

@@ -65,9 +65,7 @@ try{
 
 
 
-<font color="#ff4500">
 <h2>活動中</h2>
-</font>
 
 
 
@@ -101,9 +99,8 @@ if($row_count != 0){
 
 
 
-<font color="#ff4500">
 <h2>活動実績</h2>
-</font>
+
 </u>
 <?php $company = "initial";?>
 
