@@ -4,7 +4,14 @@ require_once('../config.php');
 
 //session_start();
 //$id = $_SESSION['id'];
-$id = $_POST['id'];
+
+if(!empty($_POST['id'])){
+    $id = $_POST['id'];
+}
+else{
+    $id = $_GET['id'];
+}
+
 //echo  h($id) . "の変更<br>";
 //$password1 = $_POST['password1'];
 $name = 'none';        //変数にdefaultのパスワードを入れる

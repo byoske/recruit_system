@@ -3,8 +3,13 @@
 require_once('../admin_menu.php');
 require_once('../config.php');
 
+if(!empty($_POST['id'])){
+    $id = $_POST['id'];
+}
+else{
+    $id = $_GET['id'];
+}
 
-$id = $_POST['id'];
 if($id == "admin") {
     $alert = "<script type='text/javascript'>alert('adminユーザーは削除できません\\n※OKボタンを押してください');</script>";
     echo $alert;
@@ -19,9 +24,15 @@ try {
     echo $e->getMessage() . PHP_EOL;
 }
 }
-if($_POST['flag']==1){
-    require('../user_list/user_List.php');
+if(!empty($_POST['id'])){
+    if($_POST['flag']==1){
+        require('../user_list/user_List.php');
+    }
+    else{
+        require('../user_list/pdo_search.php');
+    }
 }
 else{
     require('../user_list/pdo_search.php');
+//    echo "<a href='#' onclick=history.back()>戻る</a>";
 }
