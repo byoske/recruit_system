@@ -36,3 +36,5 @@ else{
     require('../user_list/pdo_search.php');
 //    echo "<a href='#' onclick=history.back()>戻る</a>";
 }
+
+// 遅れない
