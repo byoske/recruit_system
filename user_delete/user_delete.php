@@ -37,4 +37,3 @@ else{
 //    echo "<a href='#' onclick=history.back()>戻る</a>";
 }
 
-// 遅れない
