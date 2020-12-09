@@ -12,12 +12,12 @@ header('Pragma:');
 
 header("Content-type: text/html; charset=utf-8");
 
-if(empty($_POST)) {
+if(empty($_GET)) {
     header("Location: pdo_search_form.html");
     exit();
 }else{
     //名前入力判定
-    if (!isset($_POST['yourname'])  || $_POST['yourname'] === "" ){
+    if (!isset($_GET['yourname'])  || $_GET['yourname'] === "" ){
         $errors['name'] = "名前が入力されていません。";
     }
 }
@@ -26,7 +26,7 @@ if(empty($_POST)) {
     try{
         $dbh = new PDO(DSN, DB_USER, DB_PASS);
         //日本語が含まれているなら名前検索
-        if(preg_match( "/[ぁ-ん]+|[ァ-ヴー]+|[一-龠]/u", $_POST['yourname'])){
+        if(preg_match( "/[ぁ-ん]+|[ァ-ヴー]+|[一-龠]/u", $_GET['yourname'])){
             $statement = $dbh->prepare("SELECT * FROM USER WHERE  NAME LIKE (:name) ");
         }else{//含まれていないならID 検索
             $statement = $dbh->prepare("SELECT * FROM USER WHERE  ID LIKE (:name) ");
@@ -34,7 +34,7 @@ if(empty($_POST)) {
 
         if($statement){
             //ポストされた値をLIKEで使えるように変換をしている
-            $yourname = $_POST['yourname'];
+            $yourname = $_GET['yourname'];
             $like_yourname = "%".$yourname."%";
             //プレースホルダへ実際の値を設定する
             $statement->bindValue(':name', $like_yourname, PDO::PARAM_STR);
@@ -95,7 +95,7 @@ if($row_count != 0){
 
     $flag = 0;
     echo "<td>";
-    echo "<form action=../user_initialize/user_control.php method=post>";
+    echo "<form action=../user_initialize/user_control.php method=GET>";
     echo "<input type=submit value=変更>";
     echo "<input type=hidden name=id value='".$id."'>";
     echo "<input type=hidden name=flag value='".$flag."'>";
@@ -104,11 +104,11 @@ if($row_count != 0){
 
 
     echo "<td>";
-    echo "<form action=../user_delete/user_delete.php method=post>";
+    echo "<form action=../user_delete/user_delete.php method=GET>";
     echo "<input type=submit value=削除>";
     echo "<input type=hidden name=id value='".$id."'>";
     echo "<input type=hidden name=flag value='".$flag."'>";
-    echo "<input type=hidden name=yourname value='".$_POST['yourname']."'>";
+    echo "<input type=hidden name=yourname value='".$_GET['yourname']."'>";
     echo "</td>";
     echo "</form>";
     echo "</td>";

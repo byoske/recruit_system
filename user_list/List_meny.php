@@ -18,10 +18,17 @@ require_once ('../admin_menu.php');
 	<a href='user_LIst.php'>ユーザー一覧</a><br><br>
 
 	キーワード検索<br>
+	<form action="pdo_search.php" method="get" style="display: inline">
+	<input type="text" name="yourname" required="required">
+	<input type="submit" value="表示"><br><br>
+	</form>
+
+<!--
 	<form action="pdo_search.php" method="post" style="display: inline">
 	<input type="text" name="yourname" required="required">
 	<input type="submit" value="表示"><br><br>
 	</form>
+-->
 </body>
 <a href='../admin/admin.php'>戻る</a>
 </html>
