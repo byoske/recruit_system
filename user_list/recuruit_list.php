@@ -115,15 +115,15 @@ if($row_count != 0){
 <?php if($company != "initial"){//一番上に空白を入れない為の処理?>
 <br>
 <?php }?>
-<?php if($row['RESULT'] == 1){//リザルトの中身が合格なら
+<?php if($row['RESULT'] == "合格"){//リザルトの中身が合格なら
             echo '<font color="#ff4500"> ';//赤
             echo "合格　　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
             echo '</font>';
-        }else if($row['RESULT'] == null || $row['RESULT'] == 3){//選択なしor新規追加されたときにリザルトに入る値の時
+        }else if($row['RESULT'] == null || $row['RESULT'] == "選考中"){//選択なしor新規追加されたときにリザルトに入る値の時
             echo "選考中　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
-        }else if($row['RESULT'] == 0){//不合格の時
+        }else if($row['RESULT'] == "不合格"){//不合格の時
             echo  '<font color="#0000FF">';//青
             echo "不合格　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
