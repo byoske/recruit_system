@@ -73,6 +73,17 @@ foreach ($table_datas as $table_name => $table_data) {
                 $id = $val;
             }
 
+            if($column_name == "NAME"){
+               // echo "<td>".$val;
+               ?>
+               <!DOCTYPE html>
+               <html>
+				<body>
+                <td><a href = "../recuruit/recuruit_report_top.php?id=<?php echo $val;?>"><?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?>
+
+            <?php    continue;
+            }
+
             echo "<td>";
             echo $val;
             //            echo "</td>";
