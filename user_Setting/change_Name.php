@@ -35,6 +35,7 @@ if (($row['NAME'] == "none" && $name2 == $name1) || ($id == "admin" && $name2 ==
         $stmt->execute([$name2, $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
+        $_SESSION['name'] = $name2;
     } catch (\Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
