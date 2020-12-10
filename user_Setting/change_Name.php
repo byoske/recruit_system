@@ -34,7 +34,7 @@ if (($row['NAME'] == "none" && $name2 == $name1) || ($id == "admin" && $name2 ==
         $stmt = $pdo->prepare('update USER set NAME = ? where ID = ?');
         $stmt->execute([$name2, $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
+// セッションname更新
         $_SESSION['name'] = $name2;
     } catch (\Exception $e) {
         echo $e->getMessage() . PHP_EOL;
