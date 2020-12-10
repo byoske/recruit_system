@@ -170,6 +170,7 @@ if($row_count != 0){
 			<?php if($row['PURPOSE3']!=null){?>
 			<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
 	 ］
+	 </a>
 <?php
     }
 }
