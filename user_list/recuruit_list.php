@@ -25,8 +25,8 @@ else{
 
 try{
     $dbh = new PDO(DSN, DB_USER, DB_PASS);
-        //レポートテーブル内の自分のidを昇順に取得
-        $statement = $dbh->prepare("SELECT * FROM REPORT WHERE  ID LIKE (:name) ORDER BY COMPANY ASC ");
+    //レポートテーブル内の自分のidを昇順に取得
+    $statement = $dbh->prepare("SELECT * FROM REPORT WHERE  ID LIKE (:name) ORDER BY COMPANY ASC ");
 
 
     if($statement){
