@@ -13,8 +13,14 @@ header("Content-type: text/html; charset=utf-8");
 
 
 require_once('../user_menu.php');
-$id = $_SESSION['id'];
 
+
+if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
+    $id = $_GET['id'];
+}
+else{
+    $id = $_SESSION['id'];
+}
 
 
 try{
@@ -77,8 +83,12 @@ if($row_count != 0){
 ?>
 
 	<!リンクで変数を遷移先に渡しその内容表示　!>
+	<?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
+	<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
+	<?php }
+	else{?>
 	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
-
+	<?php }?>
 
 	<?php if($row['PURPOSE1']!=null){//目的の内容が空なら表示しない?>
 	［
@@ -137,19 +147,32 @@ if($row_count != 0){
 ➡
 <?php }?>
 <! 活動実績の内容の表示処理>
-<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
-	［
-	<?php if($row['PURPOSE1']!=null){?>
-	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
-	<?php if($row['PURPOSE2']!=null){?>
-	<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
-	<?php if($row['PURPOSE3']!=null){?>
-	<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
-	］
-</a>
 
+ <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
+		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1">
+	［
+			<?php if($row['PURPOSE1']!=null){?>
+				<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
+			<?php if($row['PURPOSE2']!=null){?>
+				<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
+			<?php if($row['PURPOSE3']!=null){?>
+				<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
+	 ］
+</a>
+<?php }
+    else{                                                                   //userの場合?>
+		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
+	［
+			<?php if($row['PURPOSE1']!=null){?>
+			<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
+			<?php if($row['PURPOSE2']!=null){?>
+			<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
+			<?php if($row['PURPOSE3']!=null){?>
+			<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
+	 ］
 <?php
-        }
+    }
+}
         $company = $row['COMPANY'];//一つ前のやつとおんなじか判別するための変数
 
     }

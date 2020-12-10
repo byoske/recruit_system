@@ -14,10 +14,10 @@
 
 <?php
 if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
-    $val = $_GET['id'];
+    $val = $_GET['name'];
 ?>
 
-<h1><?php echo $val;?></h1>
+<h1><?php echo $val."(".$_GET['id'].")";?></h1>
 <?php }else{ ?>
 
 <h1>就職活動報告</h1>
@@ -26,9 +26,16 @@ if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
 
  <p1>
  <?php
-if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
 
-     echo "<a href = '../admin/admin.php'>戻る</a>";
+if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
+    if( $_GET['list_flag'] == 1){
+     echo "<a href = '../user_list/user_List.php'>戻る</a>";
+    }
+    else{
+        $yourname = $_GET['yourname'];
+        ?>
+        <td><a href = "../user_list/pdo_search.php?yourname=<?php echo $yourname;?>"><?=htmlspecialchars("戻る",ENT_QUOTES,'UTF-8')?></a></td>
+<?php }
 }
 else{
     echo "<a href = '../user/user.php'>戻る</a>";

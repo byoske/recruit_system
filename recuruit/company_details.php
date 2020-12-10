@@ -78,7 +78,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 <div>
-                <?php echo $code; ?>
+
 
                  <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){ ?>
                  <div class="element_wrap">

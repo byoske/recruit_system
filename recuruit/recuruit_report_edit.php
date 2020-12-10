@@ -160,42 +160,49 @@
 
 
 	<div class="element_wrap">
-		<label for="i_contents">実施内容</label>
-		<textarea required name = "Contents" rows="10"  placeholder="説明された内容、試験・面接内容など記載"></textarea>
+	<label for="i_contents">実施内容</label>
+	<textarea required name = "Contents" rows="10"  placeholder="説明された内容、試験・面接内容など記載"></textarea>
 	</div>
 	<div class="element_wrap">
-		<label for="i_schedule">今後のスケジュール</label>
-		<textarea required rows = "10"name = "Schedule"  placeholder="この後の採用試験、採用試験の結果通知の日程等を記載"></textarea>
+	<label for="i_schedule">今後のスケジュール</label>
+	<textarea required rows = "10"name = "Schedule"  placeholder="この後の採用試験、採用試験の結果通知の日程等を記載"></textarea>
 	</div>
 	<div class="element_wrap">
-		<label for="i_remarks">備考</label>
-		<textarea required rows = "10" name = "Remarks" placeholder="入社への意向など特記事項"></textarea>
+	<label for="i_remarks">備考</label>
+	<textarea required rows = "10" name = "Remarks" placeholder="入社への意向など特記事項"></textarea>
 	</div>
 
-	<INPUT type="reset" name="reset" value="入力内容をリセットする">
-    <input type="submit"name="btn_confirm" value="入力内容を確認する">
 
-    <p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
+
+				<INPUT type="reset" name="reset" value="入力内容をリセットする">
+ 	  		    <input type="submit"name="btn_confirm" value="入力内容を確認する">
+				<p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
+
 	 </form>
 
 	<?php }else if($row['RESULT'] == null){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
 
-	<a href = "recuruit_report.php?code=<?php echo $code?>" >
-	<input type="hidden" name="pass" value="1">
-	<input name="btn_confirm"type = "submit" value = "新規追加">
-	</a>
 
-	<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
-	<input type="hidden" name="pass_1" value="<?php echo $company;?>" >
-	<input type="submit" name="pass" value="合格">
-	</form>
+				<a href = "recuruit_report.php?code=<?php echo $code?>" >
+				<input type="hidden" name="pass" value="1">
+				<input name="btn_confirm"type = "submit" value = "新規追加">
+				</a>
 
-	<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
-	<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
-	<input type="submit" name="failure" value="不合格">
-	</form>
+				<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
+				<input type="hidden" name="pass_1" value="<?php echo $company;?>" >
+				<input type="submit" name="pass" value="合格">
+				</form>
 
-	<?php }?>
+				<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
+				<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
+				<input type="submit" name="failure" value="不合格">
+				</form>
+
+		<?php
+         }
+         else if($row['RESULT'] == "合格"){
+             echo "<a href='#' onclick=history.back()>戻る</a>";
+         }?>
 
 </body>
 </script>

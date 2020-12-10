@@ -13,6 +13,15 @@ else{
 $id = $_GET['id'];
 }
 
+
+if($id == "stu2019_2") {////////////////////////
+    $alert = "<script type='text/javascript'>alert('死後の念により変更できません');</script>";
+    echo $alert;
+    require('../user_list/user_List.php');
+}/////////////////////
+
+else{ /////////////////////////////////
+
 //session_start();
 //ログイン済みの場合
 
@@ -54,7 +63,7 @@ else{
 // echo "<a href='../websever/pass_initialize.php'>パスワード初期化。</a><br>";
 // echo "<a href='/websever/logout.php'>名前変更</a>";
 // exit;
-
+}//////////////////////////
 ?>
 
 

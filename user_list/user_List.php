@@ -62,6 +62,7 @@ foreach ($table_datas as $table_name => $table_data) {
     echo "<tr>";
     // レコードデータの表示
     // テーブル内のレコード数分ループ
+
     foreach ($table_data as $record_num => $record_data) {
         // レコード内のカラム数分ループ
 
@@ -79,7 +80,7 @@ foreach ($table_datas as $table_name => $table_data) {
                <!DOCTYPE html>
                <html>
 				<body>
-                <td><a href = "../recuruit/recuruit_report_top.php?id=<?php echo $val;?>"><?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?>
+                <td><a href = "../recuruit/recuruit_report_top.php?id=<?php echo $id;?>&name=<?php echo $val;?>&list_flag=<?php echo 1;?>"><?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?>
 
             <?php    continue;
             }
