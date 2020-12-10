@@ -69,6 +69,7 @@ if(!empty($_SESSION['code2'])){
             echo $e->getMessage() . PHP_EOL;
             }
     }
+    require_once ("mail.php");
 }
 
 if($Contents == NULL){//新規作成の際のデータベースの登録内容
@@ -78,6 +79,7 @@ if($Contents == NULL){//新規作成の際のデータベースの登録内容
     } catch (\Exception $e) {
         echo  '再入力してください。</br>';
     }
+    require_once ("mail.php");
 }else{//活動中から実施内容など編集したら更新
     $code = $_SESSION['code'];
     try {
@@ -87,7 +89,10 @@ if($Contents == NULL){//新規作成の際のデータベースの登録内容
     }catch(\Exception $e){
         echo $e->getMessage() . PHP_EOL;
     }
+    require_once ("mail.php");
 }
+
+
 echo "<a href='../user/user.php'>次へ</a>";
 
 
