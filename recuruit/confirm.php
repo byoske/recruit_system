@@ -29,6 +29,8 @@
     if($_POST["Contents"] == "NULL"){//新規作成
         if(!empty($_POST['code'])){
             $_SESSION['code2'] = $_POST['code'];
+        }else{
+            $_SESSION['code2'] = null;
         }
         $_SESSION['pur1'] = $purpose[$_POST['purpose1']];
         $_SESSION['pur2'] = $purpose[$_POST['purpose2']];
