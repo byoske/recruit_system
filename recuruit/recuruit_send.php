@@ -61,7 +61,7 @@ if(!empty($_SESSION['code2'])){
     if($_SESSION['code2'] != null){
             try {
             $code2 = $_SESSION['code2'];
-             $pdo = new PDO(DSN, DB_USER, DB_PASS);
+             //$pdo = new PDO(DSN, DB_USER, DB_PASS);
              $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE CODE = ?');
              $stmt->execute(["選考中",$code2]);
 
@@ -73,6 +73,24 @@ if(!empty($_SESSION['code2'])){
 }
 
 if($Contents == NULL){//新規作成の際のデータベースの登録内容
+    try{
+
+        $statement = $pdo->prepare("SELECT COUNT(*) FROM REPORT WHERE ID = ? AND COMPANY = ?");
+            $statement->execute([$id,$Company]);
+            $count = (int)$statement->fetchColumn();
+            if($count != 0){
+                    echo "※すでに登録されている企業です
+                            新規追加を作成したい場合は活動実績から行ってください";
+                    echo '<meta http-equiv="refresh" content=" 3; url=recuruit_report_top.php">';
+                    echo "<a href='recuruit_report_top.php'>次へ</a>";
+                    exit;
+             }
+
+    }catch(\Exception $e){
+        header('Content-Type: text/plain; charset=UTF-8', true, 500);
+        exit('Error: ' . $e->getMessage());
+    }
+
     try {
         $stmt = $pdo->prepare("insert into report(ID,NAME,COMPANY,COMPANY2,ADDRESS,TEL,DATE,HOUR1,MIN1,HOUR2,MIN2,PURPOSE1,PURPOSE2,PURPOSE3) value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$id, $name, $Company, $Company2, $address, $tel, $date, $hour1, $min1, $hour2, $min2, $pur1, $pur2, $pur3]);
