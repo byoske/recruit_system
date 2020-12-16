@@ -1,6 +1,9 @@
 <?php
 
 $id = $_SESSION['id'];
+$code = $_SESSION['code'];
+$name = $_SESSION['name'];
+$Company =$_SESSION['Company'];
 mb_language("Japanese");
 mb_internal_encoding("UTF-8");
 
@@ -16,9 +19,16 @@ try {
 
 
 $to = $row['MAIL'];
-$subject = $id."の就職活動報告が更新されました";
-$message = $id."の就職活動報告が更新されました、サイトから確認をしてください
-<これは自動更新です返信はできません>";
+
+//$subject = $id."の就職活動報告が更新されました";
+$subject = "【就職活動報告】".$name."（企業名：".$Company."）";
+
+$message = "管理人者様
+
+下記URLよりご確認ください。
+
+https://192.168.10.160/recruit_system/recuruit/company_details.php?code=".$code;
+
 $headers = $id."@nagoya-vti.ac.jp";
 
 

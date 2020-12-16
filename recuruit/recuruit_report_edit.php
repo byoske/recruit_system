@@ -185,6 +185,8 @@
 
 				<a href = "recuruit_report.php?code=<?php echo $code?>" >
 				<input type="hidden" name="pass" value="1">
+				<input type="hidden" name="flg" value=<?php echo $flg?>>
+
 				<input name="btn_confirm"type = "submit" value = "新規追加">
 				</a>
 
