@@ -17,6 +17,7 @@
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
             echo "<a href='recuruit_report_top.php'>次へ</a>";
+            require_once ("mail.php");
             exit;
         }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
             $failure=$_POST['failure_1'];
@@ -25,6 +26,7 @@
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
             echo "<a href='recuruit_report_top.php'>次へ</a>";
+            require_once ("mail.php");
             exit;
         }
     } catch (\Exception $e) {
@@ -182,27 +184,27 @@
 
 	<?php }else if($row['RESULT'] == null){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
 
-
+				<?php $_SESSION['code'] = $code;?>
 				<a href = "recuruit_report.php?code=<?php echo $code?>" >
 				<input type="hidden" name="pass" value="1">
 				<input type="hidden" name="flg" value=<?php echo $flg?>>
 
-				<input name="btn_confirm"type = "submit" value = "新規追加">
+				<input name="btn_confirm"type = "submit" value = "次の選考">
 				</a>
 
 				<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
 				<input type="hidden" name="pass_1" value="<?php echo $company;?>" >
-				<input type="submit" name="pass" value="合格">
+				<input type="submit" name="pass" value="内定">
 				</form>
 
 				<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
 				<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
-				<input type="submit" name="failure" value="不合格">
+				<input type="submit" name="failure" value="選考落ち">
 				</form>
 
 		<?php
          }
-         else if($row['RESULT'] == "合格"){
+         else if($row['RESULT'] == "内定"){
              echo "<a href='#' onclick=history.back()>戻る</a>";
          }?>
 

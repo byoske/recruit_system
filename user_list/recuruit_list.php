@@ -89,9 +89,9 @@ if($row_count != 0){
 	else{?>
 	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 	<?php }?>
-
-	<?php if($row['PURPOSE1']!=null){//目的の内容が空なら表示しない?>
 	［
+	<?php if($row['PURPOSE1']!=null){//目的の内容が空なら表示しない?>
+
 	<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8') ?><?php }?>
 	<?php if($row['PURPOSE2']!=null){?>
 	<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
@@ -125,17 +125,17 @@ if($row_count != 0){
 <?php if($company != "initial"){//一番上に空白を入れない為の処理?>
 <br>
 <?php }?>
-<?php if($row['RESULT'] == "合格"){//リザルトの中身が合格なら
+<?php if($row['RESULT'] == "内定"){//リザルトの中身が合格なら
             echo '<font color="#ff4500"> ';//赤
-            echo "合格　　・";
+            echo "内定　　　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
             echo '</font>';
         }else if($row['RESULT'] == null || $row['RESULT'] == "選考中"){//選択なしor新規追加されたときにリザルトに入る値の時
-            echo "選考中　・";
+            echo "選考中　　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
-        }else if($row['RESULT'] == "不合格"){//不合格の時
+        }else if($row['RESULT'] == "選考落ち"){//不合格の時
             echo  '<font color="#0000FF">';//青
-            echo "不合格　・";
+            echo "選考落ち　・";
             echo htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8');
             echo '</font>';
         }
