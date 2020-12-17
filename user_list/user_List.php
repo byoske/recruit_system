@@ -75,6 +75,7 @@ foreach ($table_datas as $table_name => $table_data) {
             }
 
             if($column_name == "NAME"){
+                if($id != "admin"){
                // echo "<td>".$val;
                ?>
                <!DOCTYPE html>
@@ -83,6 +84,7 @@ foreach ($table_datas as $table_name => $table_data) {
                 <td><a href = "../recuruit/recuruit_report_top.php?id=<?php echo $id;?>&name=<?php echo $val;?>&list_flag=<?php echo 1;?>"><?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?>
 
             <?php    continue;
+                }
             }
 
             echo "<td>";

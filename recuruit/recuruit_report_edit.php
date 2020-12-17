@@ -189,23 +189,46 @@
 				<input type="hidden" name="pass" value="1">
 				<input type="hidden" name="flg" value=<?php echo $flg?>>
 
-				<input name="btn_confirm"type = "submit" value = "次の選考">
+				<input name="btn_confirm"type = "submit" value = "次の選考"style="width:10%;" >
 				</a>
 
 				<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
-				<input type="hidden" name="pass_1" value="<?php echo $company;?>" >
-				<input type="submit" name="pass" value="内定">
+				<input type="hidden" name="pass_1" value="<?php echo $company;?>" ><br><br>
+				<input type="submit" name="pass" value="内定"style="width:10%;">
 				</form>
-
 				<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
 				<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
-				<input type="submit" name="failure" value="選考落ち">
+				<input type="submit" name="failure" value="選考落ち"style="width:10%;">
 				</form>
 
 		<?php
-         }
-         else if($row['RESULT'] == "内定"){
+}
+else if($row['RESULT'] != null ){
+    $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
+    $statement-> execute([$company]);
+    if($statement){
+        if($statement->execute()){
+            //レコード件数取得
+            $row_count = $statement->rowCount();
+
+            while($row = $statement->fetch()){
+                $rows[] = $row;
+            }
+
+        }
+        $i = 0;$b = 0;
+        foreach($rows as $row){
+
+            if($code < $row['CODE'] && $i <= 0){ $i++;?>
+                         <a href = "recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">次へ</a>
+                     <?php }else if($code > $row['CODE'] && $b <= 0){ $b++;?>
+                      <a href = "recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">前へ</a>
+                      <?php
+
+                }
+             }
              echo "<a href='#' onclick=history.back()>戻る</a>";
+         }
          }?>
 
 </body>

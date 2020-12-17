@@ -82,11 +82,14 @@ if(empty($_GET)) {
 
 if($row_count != 0){
     foreach($rows as $row){
-?>
+        ?>
 
 	<td><?= $id = $row['ID']?></td>
-
+	<?php if($id != "admin"){  ?>
 	<td><a href = "../recuruit/recuruit_report_top.php?id=<?php echo $id;?>&name=<?php echo $row['NAME'];?>&list_flag=<?php echo 0;?>&yourname=<?php echo $yourname;?>"><?=htmlspecialchars($row['NAME'],ENT_QUOTES,'UTF-8')?></td>
+<?php }else{?>
+    <td><?=htmlspecialchars($row['NAME'],ENT_QUOTES,'UTF-8')?></td>
+<?php } ?>
 
 	<td><?=htmlspecialchars($row['MAIL'],ENT_QUOTES,'UTF-8')?></td>
 	<td><?=htmlspecialchars($row['CREATED'],ENT_QUOTES,'UTF-8')?></td>
