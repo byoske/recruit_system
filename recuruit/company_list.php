@@ -29,12 +29,12 @@ else{
 
 
 	キーワード検索<br>
-	<form action="company_list.php" method="post" style="display: inline">
+	<form action="company_list.php" method="get" style="display: inline">
 	<input type="text" name="yourname" required="required">
 	<input type="submit" value="表示"><br><br>
 	</form>
 
-	<form action="company_list.php" method="post" style="display: inline">
+	<form action="company_list.php" method="get" style="display: inline">
 	<input type="submit" value="全て表示"><br>
 	</form>
 
@@ -119,7 +119,7 @@ foreach ($table_datas as $table_name => $table_data) {
             if($column_name == "ID"){
                 $id = $val;
             }
-            if (!isset($_POST['yourname'])  || $_POST['yourname'] === "" ){               //検索に何もない時
+            if (!isset($_GET['yourname'])  || $_GET['yourname'] === "" ){               //検索に何もない時
 
             ?>
 
@@ -129,7 +129,7 @@ foreach ($table_datas as $table_name => $table_data) {
             }
 
             else{                                                                           //検索したとき
-                $yourname = $_POST['yourname'];
+                $yourname = $_GET['yourname'];
                  if (strpos($val, $yourname) !== false) { ?>
 
 

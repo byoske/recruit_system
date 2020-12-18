@@ -15,7 +15,7 @@ require_once ('../admin_menu.php');
 
 </head>
 <body>
-	<a href='user_LIst.php'>ユーザー一覧</a><br><br>
+	<a href='user_List.php'>ユーザー一覧</a><br><br>
 
 	キーワード検索<br>
 	<form action="pdo_search.php" method="get" style="display: inline">
