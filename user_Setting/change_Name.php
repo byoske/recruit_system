@@ -44,11 +44,32 @@ if (($row['NAME'] == "none" && $name2 == $name1) || ($id == "admin" && $name2 ==
     if($id == "admin") {
         echo "<a href='../admin/admin.php'>次へ</a>";
     } else {
-        echo "<a href='../user/user.php'>次へ</a>";
+        $output = '';
+        if (isset($_SESSION["id"])) {
+            $output = '再ログインしてください。';
+        } else {
+            require_once('../user_menu.php');
+            //    $output = 'タイムアウトしました。';
+        }
+        //セッション変数のクリア
+        $_SESSION = array();
+        //セッションクッキーも削除
+        if (ini_get("session.use_cookies")) {
+            $params = session_get_cookie_params();
+            setcookie(session_name(), '', time() - 42000,
+                $params["path"], $params["domain"],
+                $params["secure"], $params["httponly"]
+                );
+        }
+        //セッションクリア
+        @session_destroy();
+
+        echo $output;
+        echo "<br /> <a href='../login/sign.php'>ログイン画面へ</a>";
     }
 
     }else {
-        echo '名前が一致しませんです。<br />';
+        echo '名前が一致しませんでした。<br />';
         echo "<a href = '../user_Setting/Name_change_H.php'>戻る";
         return false;
 }
