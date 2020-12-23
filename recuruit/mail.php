@@ -1,5 +1,4 @@
 <?php
-
 $id = $_SESSION['id'];
 $code = $_SESSION['code'];
 $name = $_SESSION['name'];

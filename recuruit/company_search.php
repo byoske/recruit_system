@@ -1,6 +1,7 @@
 
 <?php
 require_once('../config.php');
+session_start();
 $val = $_GET['id'];
 ?>
 
@@ -77,13 +78,23 @@ try{
 
 if($row_count != 0){
     foreach($rows as $row){
+
+
+
+
+
         $company = $row['DATE']." ".$row['PURPOSE1']." " .$row['PURPOSE2']." ".$row['PURPOSE3'];
 
 ?>
 <tr>
-<td><a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($company,ENT_QUOTES,'UTF-8')?></a></td>
-</tr>
+<td><a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($company,ENT_QUOTES,'UTF-8')?></a>&nbsp;&nbsp;&nbsp;
+
 	<?php
+	if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
+	    echo $row['NAME']. '('.$row['ID'].')';
+	}
+	?></td></tr>
+<?php
     }
 
 
