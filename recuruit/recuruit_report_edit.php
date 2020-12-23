@@ -202,8 +202,7 @@
 				</form>
 
 		<?php
-}
-else if($row['RESULT'] != null ){
+    }else if($row['RESULT'] != null ){
     $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$company]);
     if($statement){
@@ -214,20 +213,29 @@ else if($row['RESULT'] != null ){
             while($row = $statement->fetch()){
                 $rows[] = $row;
             }
-
+            $code2 = array_column($rows,'CODE');
         }
-        $i = 0;$b = 0;
-        foreach($rows as $row){
+        //前へ戻る処理
+        $i = 0;$b = 0;$c = $row_count -1;
+        while($c >= 0){
+            if($code > $code2[$c] && $b <= 0){$b++;
+            ?><a href = "recuruit_report_edit.php?code=<?php echo $code2[$c];?>&flg=1">前へ</a><?php
+                        }
+                         $c--;
+                    }
 
-            if($code < $row['CODE'] && $i <= 0){ $i++;?>
-                         <a href = "recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">次へ</a>
-                     <?php }else if($code > $row['CODE'] && $b <= 0){ $b++;?>
-                      <a href = "recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">前へ</a>
-                      <?php
+                  $c = 0;
+                   //次へ行く処理
+                    while($c <= $row_count -1){
+                         if($code < $code2[$c] && $i <= 0){$i++;
+                             ?><a href = "recuruit_report_edit.php?code=<?php echo $code2[$c];?>&flg=1">次へ</a><?php
+                         }
+                         $c++;
+                    }
 
-                }
-             }
-             echo "<a href='#' onclick=history.back()>戻る</a>";
+
+             echo '<br>',"<a href='#' onclick=history.back()>戻る</a>";
+
          }
          }?>
 

@@ -150,6 +150,9 @@ if($row_count != 0){
 
  <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
 		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1">
+<?php }else{                                                                   //userの場合?>
+		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
+<?php } ?>
 	［
 			<?php if($row['PURPOSE1']!=null){?>
 				<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
@@ -159,24 +162,10 @@ if($row_count != 0){
 				<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
 	 ］
 </a>
-<?php }
-    else{                                                                   //userの場合?>
-		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
-	［
-			<?php if($row['PURPOSE1']!=null){?>
-			<?=htmlspecialchars($row['PURPOSE1'],ENT_QUOTES,'UTF-8')?><?php }?>
-			<?php if($row['PURPOSE2']!=null){?>
-			<?=htmlspecialchars($row['PURPOSE2'],ENT_QUOTES,'UTF-8')?><?php }?>
-			<?php if($row['PURPOSE3']!=null){?>
-			<?=htmlspecialchars($row['PURPOSE3'],ENT_QUOTES,'UTF-8')?><?php }?>
-	 ］
-	 </a>
-<?php
+    <?php     $company = $row['COMPANY'];//一つ前のやつとおんなじか判別するための変数
+            }
+        }
     }
-}
-        $company = $row['COMPANY'];//一つ前のやつとおんなじか判別するための変数
-
-    }
-}?>
+?>
 </body>
 </html>
