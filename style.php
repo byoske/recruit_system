@@ -145,6 +145,20 @@ textarea{
 	vertical-align:middle;
 	width:300px;
 }
+.button {
+  display       : inline-block;
+  border-radius : 3%;          /* 角丸       */
+  /*font-size     : 18pt;        /* 文字サイズ */
+  text-align    : center;      /* 文字位置   */
+  cursor        : pointer;     /* カーソル   */
+  padding       : 12px 31px;   /* 余白       */
+  background    : #eeeeee;     /* 背景色     */
+  color         : #000000;     /* 文字色     */
+  line-height   : 1em;         /* 1行の高さ  */
+  transition    : .3s;         /* なめらか変化 */
+}
+.button:hover {
+}
 </style>
 </head>
 </html>

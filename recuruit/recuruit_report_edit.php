@@ -128,6 +128,7 @@
                		<div class="element_wrap">
                     <label>実施内容</label>
                     <p><?php echo $contents; ?></p>
+
               		</div>
 
          	 	     <div class="element_wrap">
@@ -160,18 +161,17 @@
     <input type="hidden" name="purpose3" value= "<?php echo $purpose3;?>" >
 	<input type="hidden" name="code" value= "<?php echo $code;?>" >
 
-
 	<div class="element_wrap">
 	<label for="i_contents">実施内容</label>
-	<textarea required name = "Contents" rows="10"  placeholder="説明された内容、試験・面接内容など記載"></textarea>
+	<textarea required name = "Contents" rows="10"   placeholder="説明された内容、試験・面接内容など記載"><?php if(!empty($_GET['Edit'])) echo $row['CONTENTS']; ?></textarea>
 	</div>
 	<div class="element_wrap">
 	<label for="i_schedule">今後のスケジュール</label>
-	<textarea required rows = "10"name = "Schedule"  placeholder="この後の採用試験、採用試験の結果通知の日程等を記載"></textarea>
+	<textarea required rows = "10"name = "Schedule"   placeholder="この後の採用試験、採用試験の結果通知の日程等を記載"><?php if(!empty($_GET['Edit'])) echo $row['SCHEDULE']; ?></textarea>
 	</div>
 	<div class="element_wrap">
 	<label for="i_remarks">備考</label>
-	<textarea required rows = "10" name = "Remarks" placeholder="入社への意向など特記事項"></textarea>
+	<textarea required rows = "10" name = "Remarks"  placeholder="入社への意向など特記事項"><?php if(!empty($_GET['Edit'])) echo $row['REMARKS']; ?></textarea>
 	</div>
 
 
@@ -203,6 +203,7 @@
 
 		<?php
     }else if($row['RESULT'] != null ){
+        ?><a href = "../recuruit/recuruit_report_edit.php?Edit=1&code=<?php echo $code;?>&flg=0" class="button" >編集</a><?php
     $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$company]);
     if($statement){
