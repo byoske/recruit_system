@@ -13,7 +13,12 @@ $val = $_GET['id'];
 </head>
 <h1><?php echo $val;?></h1>
 <head>
-<a href='../recuruit/company_list.php'>一覧に戻る</a><br>
+<?php if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合    ?>
+			<a href='../admin/admin.php'>ホームに戻る</a><br>
+<?php }
+      else{                                                              //userの場合      ?>
+      		<a href='../user/user.php'>ホームに戻る</a><br>
+<?php } ?>
 <title>検索画面</title>
 <meta charset="utf-8">
 

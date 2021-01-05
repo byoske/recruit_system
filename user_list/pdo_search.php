@@ -71,7 +71,7 @@ if(empty($_GET)) {
 </head>
 <body>
 
-<a href='../user_list/List_meny.php'>戻る</a>
+<a href='../admin/admin.php'>ホームに戻る</a>
 <p><?=htmlspecialchars($yourname, ENT_QUOTES, 'UTF-8')."での検索結果"?><?=$row_count?>件です。</p>
 
 
