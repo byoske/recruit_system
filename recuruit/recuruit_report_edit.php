@@ -178,7 +178,7 @@
 
 				<INPUT type="reset" name="reset" value="入力内容をリセットする">
  	  		    <input type="submit"name="btn_confirm" value="入力内容を確認する">
-				<p><a href="../recuruit/recuruit_report_top.php" style=mmargin:center>戻る</a></p>
+
 
 	 </form>
 
@@ -235,11 +235,12 @@
                     }
 
 
-             echo '<br>',"<a href='#' onclick=history.back()>戻る</a>";
+             //echo '<br>',"<a href='#' onclick=history.back()>戻る</a>";
 
          }
          }?>
-
+<br>
+<a href= "../recuruit/recuruit_report_top.php">topへ戻る</a>
 </body>
 </script>
 </html>

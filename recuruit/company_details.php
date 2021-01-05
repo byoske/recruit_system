@@ -160,14 +160,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
     <p></p>
 
-      <?php //$text="戻る"; echo '<a href="' . $_SERVER['HTTP_REFERER'] . '">' . $text . "</a>"?>
-
-	<?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){ ?>
-    <a href= "../admin/admin.php">topへ戻る</a>
-    <?php }else {?>
-    <a href= "../user/user.php">topへ戻る</a>
-    <?php }?>
-
+      <a href= "../recuruit/company_list.php">topへ戻る</a>
 	 </form>
 
 
