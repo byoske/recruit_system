@@ -43,7 +43,7 @@ form dl dd{
 
    $id = $_SESSION['id'];
    if($id == "admin") {
-        echo "<a href='../admin/admin_control.php'>戻る";
+        echo "<a href='../admin/admin.php'>ホームに戻る";
    } else {
        echo "<a href = '../user/user_Setting.php'>戻る";
    }

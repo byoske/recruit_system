@@ -30,5 +30,5 @@ echo "<a href='../admin/admin.php'>戻る</a>";
 
 ?>
 -->
- <a href='../admin/admin.php'>戻る</a>
+ <a href='../admin/admin.php'>ホームに戻る</a>
 </html>

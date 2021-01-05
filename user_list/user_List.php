@@ -20,7 +20,7 @@ try {
 $sql = 'SHOW TABLES';
 $stmt = $dbh->query($sql);
 
-echo "<a href = '../user_list/List_meny.php'>戻る</a>";
+echo "<a href = '../admin/admin.php'>ホームに戻る</a>";
 while ($result = $stmt->fetch(PDO::FETCH_NUM)){
     $table_names[] = $result[0];
 }

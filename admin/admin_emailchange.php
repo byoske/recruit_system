@@ -58,7 +58,7 @@ form dl dd{
    //-->
    </script>
    </form>
-   <p><a href = 'admin_control.php'>戻る</a></p>
+   <p><a href = '../admin/admin.php'>ホームに戻る</a></p>
  </body>
 </html>
 

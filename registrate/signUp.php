@@ -36,4 +36,4 @@ for($id; $id <= $id2 ;$id++){
         echo  $year.$id.'は登録済みのidです。</br>';
     }
 }
-echo "<a href='../admin/admin.php'>次へ</a>";
+echo "<a href='../admin/admin.php'>ホームに戻る</a>";

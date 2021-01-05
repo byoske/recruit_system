@@ -160,7 +160,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
     <p></p>
 
-      <a href= "../recuruit/company_list.php">topへ戻る</a>
+      <a href= "../recuruit/company_list.php">閲覧へ戻る</a>
 	 </form>
 
 

@@ -42,7 +42,7 @@ if (($row['NAME'] == "none" && $name2 == $name1) || ($id == "admin" && $name2 ==
     echo '名前を変更しました。<br />';
 
     if($id == "admin") {
-        echo "<a href='../admin/admin.php'>次へ</a>";
+        echo "<a href='../admin/admin.php'>ホームに戻る</a>";
     } else {
         $output = '';
         if (isset($_SESSION["id"])) {

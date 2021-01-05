@@ -41,4 +41,4 @@ try {
 }
 
 echo '名前を初期化しました。<br />';
-echo "<a href='../admin/admin.php'>次へ</a>";
+echo "<a href='../admin/admin.php'>ホームに戻る</a>";

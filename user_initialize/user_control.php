@@ -43,7 +43,7 @@ echo "</td>";
 
 if(!empty($_POST['id'])){
     if($_POST['flag']==1){
-        echo "<a href='../user_list/user_LIst.php'>戻る</a>";
+        echo "<a href='../admin/admin.php'>ホームに戻る</a>";
     }
     else{
 
@@ -57,7 +57,7 @@ if(!empty($_POST['id'])){
 }
 
 else{
-    echo "<a href='#' onclick=history.back()>戻る</a>";
+    echo "<a href='../admin/admin.php'>ホームに戻る</a>";
 }
 //echo  h($id) . "の変更<br>";
 // echo "<a href='../websever/pass_initialize.php'>パスワード初期化。</a><br>";

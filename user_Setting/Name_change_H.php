@@ -85,7 +85,7 @@ form dl dd{
 		</body>
 	<?php
     }
-    echo "<a href='../admin/admin_control.php'>戻る";
+    echo "<a href='../admin/admin.php'>ホームに戻る";
  }
  /* ------ userの場合 ------*/
 
@@ -150,7 +150,7 @@ form dl dd{
             	  <br>
           <?php }
         }
-        echo "<a href='../user/user_Setting.php'>戻る";
+        echo "<a href='../user/user.php'>ホームに戻る";
  }?>
 
 </html>

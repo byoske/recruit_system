@@ -13,10 +13,10 @@
 require_once('../config.php');
 session_start();
 if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
-    echo "<a href='../admin/admin.php'>戻る</a><br>";
+    echo "<a href='../admin/admin.php'>ホームに戻る</a><br><br>";
 }
 else{
-    echo "<a href='../user/user.php'>戻る</a><br>";
+    echo "<a href='../user/user.php'>ホームに戻る</a><br><br>";
 }
 ?>
 

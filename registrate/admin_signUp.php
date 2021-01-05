@@ -30,6 +30,6 @@
     <input type="submit"name="submit"value="登録"/></br>
     </form ></br>' ?>
 
-	<a href='../admin/admin.php'>戻る</a>
+	<a href='../admin/admin.php'>ホームに戻る</a>
 </body>
 </html>

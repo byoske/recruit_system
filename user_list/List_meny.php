@@ -30,7 +30,7 @@ require_once ('../admin_menu.php');
 	</form>
 -->
 </body>
-<a href='../admin/admin.php'>戻る</a>
+<a href='../admin/admin.php'>ホームに戻る</a>
 </html>
 
 
