@@ -240,7 +240,7 @@
          }
          }?>
 <br>
-<a href= "../recuruit/recuruit_report_top.php">topへ戻る</a>
+<a href= "../recuruit/recuruit_report_top.php">一覧に戻る</a>
 </body>
 </script>
 </html>

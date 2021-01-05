@@ -45,7 +45,7 @@ form dl dd{
    if($id == "admin") {
         echo "<a href='../admin/admin.php'>ホームに戻る";
    } else {
-       echo "<a href = '../user/user_Setting.php'>戻る";
+       echo "<a href = '../user/user.php'>ホームに戻る";
    }
    ?>
  </body>

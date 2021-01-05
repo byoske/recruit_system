@@ -27,7 +27,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
  <p1>
  <?php
 
-if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
+if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
     if( $_GET['list_flag'] == 1){
      echo "<a href = '../user_list/user_List.php'>戻る</a>";
     }
@@ -37,8 +37,8 @@ if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
         <td><a href = "../user_list/pdo_search.php?yourname=<?php echo $yourname;?>"><?=htmlspecialchars("戻る",ENT_QUOTES,'UTF-8')?></a></td>
 <?php }
 }
-else{
-    echo "<a href = '../user/user.php'>戻る</a>";
+else{                                                               //userの場合
+    echo "<a href = '../user/user.php'>ホームに戻る</a>";
 
 
 ?>

@@ -15,7 +15,7 @@ require_once('../user_menu.php');
  <li><a href = "../user_Setting/pass_change.php">パスワード変更</a>
  <li><a href = "../user_Setting/Name_change_H.php">名前変更</a>
  </ul>
- <a href='user.php'>戻る</a>
+ <a href='user.php'>ホームに戻る</a>
  </body>
 </html>
 
