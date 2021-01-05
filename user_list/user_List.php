@@ -20,7 +20,7 @@ try {
 $sql = 'SHOW TABLES';
 $stmt = $dbh->query($sql);
 
-echo "<a href = '../admin/admin.php'>ホームに戻る</a>";
+
 while ($result = $stmt->fetch(PDO::FETCH_NUM)){
     $table_names[] = $result[0];
 }
@@ -42,6 +42,7 @@ foreach ($table_names as $key => $table_name) {
 foreach ($table_datas as $table_name => $table_data) {
     //echo "<h1>$table_name</h1>";
     echo "<h1>ユーザー一覧</h1>";
+    echo "<a href = '../admin/admin.php'>ホームに戻る</a>";
     if (empty($table_data)) {
         continue;
     }
