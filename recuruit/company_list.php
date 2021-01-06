@@ -73,7 +73,7 @@ while ($result = $stmt->fetch(PDO::FETCH_NUM)){
 $table_datas = array();
 
 foreach ($table_names as $key => $table_name) {
-    $sql2 = "SELECT DISTINCT COMPANY FROM $table_name;";
+    $sql2 = "SELECT COMPANY FROM $table_name GROUP BY COMPANY ORDER BY MAX(CODE) DESC;";
     /* ---- 変更箇所 ---- */
 
    if($table_name == 'report'){
@@ -85,7 +85,6 @@ foreach ($table_names as $key => $table_name) {
     }
 
 }
-
 
 foreach ($table_datas as $table_name => $table_data) {
 
@@ -123,7 +122,7 @@ foreach ($table_datas as $table_name => $table_data) {
 
             ?>
 
-			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>"class="lettercolor">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
+			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
             <?php
             }
@@ -133,7 +132,7 @@ foreach ($table_datas as $table_name => $table_data) {
                  if (strpos($val, $yourname) !== false) { ?>
 
 
-			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>"class="lettercolor">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
+			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
 
 

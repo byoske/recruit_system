@@ -30,7 +30,7 @@ try{
     $dbh = new PDO(DSN, DB_USER, DB_PASS);
     //日本語が含まれているなら名前検索
 
-     $statement = $dbh->prepare("SELECT * FROM report WHERE  COMPANY LIKE (:name) ");
+     $statement = $dbh->prepare("SELECT * FROM report WHERE  COMPANY LIKE (:name) ORDER BY CODE DESC ");
 
 
 
