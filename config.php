@@ -17,3 +17,10 @@
         5 => "内定",
         6 => "不採用"
     );
+?>
+<style>
+.lettercolor:hover{
+    text-decoration:none;
+    color:red;
+}
+</style>

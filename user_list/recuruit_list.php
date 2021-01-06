@@ -1,9 +1,4 @@
-<style>
-.lettercolor:hover{
-    text-decoration:none;
-    color:red;
-}
-</style>
+
 
 <?php
 require_once('../config.php');

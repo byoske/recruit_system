@@ -164,6 +164,41 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 	 </form>
 
 
+<?php
+    $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
+    $statement-> execute([$company]);
+    if($statement){
+        if($statement->execute()){
+            //レコード件数取得
+            $row_count = $statement->rowCount();
+
+            while($row = $statement->fetch()){
+                $rows[] = $row;
+            }
+            $code2 = array_column($rows,'CODE');
+        }
+        //前へ戻る処理
+        $i = 0;$b = 0;$c = $row_count -1;
+        while($c >= 0){
+            if($code > $code2[$c] && $b <= 0){$b++;
+            ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1">前へ</a><?php
+                        }
+                         $c--;
+                    }
+
+                  $c = 0;
+                   //次へ行く処理
+                    while($c <= $row_count -1){
+                         if($code < $code2[$c] && $i <= 0){$i++;
+                             ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1">次へ</a><?php
+                         }
+                         $c++;
+                    }
+
+
+
+
+         }?>
 </body>
 </script>
 </html>

@@ -123,7 +123,7 @@ foreach ($table_datas as $table_name => $table_data) {
 
             ?>
 
-			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
+			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>"class="lettercolor">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
             <?php
             }
@@ -133,7 +133,7 @@ foreach ($table_datas as $table_name => $table_data) {
                  if (strpos($val, $yourname) !== false) { ?>
 
 
-			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
+			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>"class="lettercolor">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
 
 
