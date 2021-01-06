@@ -22,11 +22,12 @@ $to = $row['MAIL'];
 //$subject = $id."の就職活動報告が更新されました";
 $subject = "【就職活動報告】".$name."（企業名：".$Company."）";
 
+
 $message = "管理人者様
 
 下記URLよりご確認ください。
 
-https://192.168.10.160/recruit_system/recuruit/company_details.php?code=".$code;
+https://192.168.10.160/recruit_system/recuruit/company_details.php?code=".$code."&name=".urlencode($name);
 
 $headers = $id."@nagoya-vti.ac.jp";
 

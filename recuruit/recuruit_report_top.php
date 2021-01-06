@@ -44,9 +44,10 @@ else{                                                               //userの場
 ?>
 <br>
 	 <a href = "../recuruit/recuruit_report.php" >新規作成</a>
- 	<ul>
- 		<?php } require_once("../user_list/recuruit_list.php");//テーブルを表示するファイルを一度呼び出し?>
- 	</ul>
+
+ 		<?php }echo '<ul>'; require_once("../user_list/recuruit_list.php");  //テーブルを表示するファイルを一度呼び出し
+                echo '</ul>';?>
+
  	<u>
 
  </p1>
