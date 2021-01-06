@@ -146,19 +146,24 @@ textarea{
 	width:300px;
 }
 .button {
+text-decoration: none;
   display       : inline-block;
-  border-radius : 3%;          /* 角丸       */
+  border-radius : 6%;          /* 角丸       */
   /*font-size     : 18pt;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
-  padding       : 12px 31px;   /* 余白       */
+  padding       : 3px 45px;   /* 余白       */
   background    : #eeeeee;     /* 背景色     */
   color         : #000000;     /* 文字色     */
   line-height   : 1em;         /* 1行の高さ  */
   transition    : .3s;         /* なめらか変化 */
+  border:1px solid;
+  bgcolor:#444444;
+border-color:#444444 #444444;
 }
 .button:hover {
 }
+
 </style>
 </head>
 </html>

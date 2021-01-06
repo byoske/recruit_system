@@ -42,7 +42,7 @@ form dl dd{
    <form  action="login.php" method="post">
    <dl>
      <dt>ユーザー名</dt>
-     <dd><input type="text" name="id" size="50"></dd>
+     <dd><input type="text" name="id" size="50" onInput="checkForm(this)"></dd>
      <dt>パスワード</dt>
      <dd><input type="password" name="password" size="51"></dd><br>
      <button type="submit">ログイン</button>
@@ -50,5 +50,15 @@ form dl dd{
    </form>
  </body>
 </html>
-
+   <script type="text/javascript">
+   <!--
+   function checkForm($this) {
+       var str=$this.value;
+       while(str.match(/[^A-Z^a-z\d\-\_]/)) {
+           str=str.replace(/[^A-Z^a-z\d\-\_]/,"");
+       }
+       $this.value=str;
+   }
+   //-->
+   </script>
 

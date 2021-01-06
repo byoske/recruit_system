@@ -48,7 +48,7 @@
 
  	<div class="element_wrap">
  		<label for="i_tel">電話番号</label>
- 		<input required id="i_tel" type="tel" name="tel"  value ="<?php if(!empty($_GET['code'])) echo $row['TEL']; ?>" placeholder="080-1234-5678">
+ 		<input required id="i_tel" type="tel" name="tel" onInput="checkForm(this)" value ="<?php if(!empty($_GET['code'])) echo $row['TEL']; ?>" placeholder="080-1234-5678">
  	</div>
 
  	<div class="element_wrap">
@@ -92,4 +92,14 @@
 </body>
 </html>
 
-
+   <script type="text/javascript">
+   <!--
+   function checkForm($this) {
+       var str=$this.value;
+       while(str.match(/[^0-9^\d\-\_]/)) {
+           str=str.replace(/[^0-9^\d\-\_]/,"");
+       }
+       $this.value=str;
+   }
+   //-->
+   </script>
