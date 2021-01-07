@@ -96,8 +96,8 @@
    <!--
    function checkForm($this) {
        var str=$this.value;
-       while(str.match(/[^0-9^\d\-\_]/)) {
-           str=str.replace(/[^0-9^\d\-\_]/,"");
+       while(str.match(/[^0-9-]/)) {
+           str=str.replace(/[^0-9-]/,"");
        }
        $this.value=str;
    }

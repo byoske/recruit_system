@@ -86,10 +86,10 @@ if($row_count != 0){
 
 	<!リンクで変数を遷移先に渡しその内容表示　!>
 	<?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
-	<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=0"class="lettercolor">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
+	<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 	<?php }
 	else{?>
-	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0"class="lettercolor">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
+	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 	<?php }?>
 	［
 	<?php if($row['PURPOSE1']!=null){//目的の内容が空なら表示しない?>
@@ -151,9 +151,9 @@ if($row_count != 0){
 <! 活動実績の内容の表示処理>
 
  <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
-		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1" class="lettercolor">
+		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1">
 <?php }else{                                                                   //userの場合?>
-		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1"class="lettercolor">
+		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
 <?php } ?>
 	［
 			<?php if($row['PURPOSE1']!=null){?>

@@ -4,7 +4,7 @@
    <meta charset="utf-8">
    <title>管理者画面</title>
  </head>
- <?php require_once ('../admin_menu.php');?>
+ <?php require_once ('../admin_menu.php'); require_once('../config.php');?>
  <h1>ようこそ管理者さん</h1>
  <body>
  <ul>

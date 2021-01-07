@@ -121,6 +121,5 @@ if($Contents == NULL){//新規作成の際のデータベースの登録内容
 }
 
 require_once ("mail.php");
-echo "<a href='../user/user.php'>次へ</a>";
 
 

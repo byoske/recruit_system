@@ -1,5 +1,6 @@
 <?php
 require_once ('../admin_menu.php');
+require_once('../config.php');
 ?>
 
 <!DOCTYPE html>

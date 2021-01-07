@@ -19,7 +19,7 @@
     );
 ?>
 <style>
-.lettercolor:hover{
+a:hover{
     text-decoration:none;
     color:red;
 }
