@@ -182,9 +182,11 @@
 
 	 </form>
 
-	<?php }else if($row['RESULT'] == null){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
+	<?php }else if($row['RESULT'] == null ){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
 
-				<?php $_SESSION['code'] = $code;?>
+				<?php $_SESSION['code'] = $code;
+				if($contents != null){
+				?>
 				<a href = "recuruit_report.php?code=<?php echo $code?>" >
 				<input type="hidden" name="pass" value="1">
 				<input type="hidden" name="flg" value=<?php echo $flg?>>
@@ -201,7 +203,7 @@
 				<input type="submit" name="failure" value="選考落ち"style="width:10%;">
 				</form>
 
-		<?php
+		<?php }
     }else if($row['RESULT'] != null ){
         ?><a href = "../recuruit/recuruit_report_edit.php?Edit=1&code=<?php echo $code;?>&flg=0" class="button" >編集</a></br><?php
     $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");

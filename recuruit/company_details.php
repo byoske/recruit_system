@@ -1,6 +1,5 @@
 <?php
-//$val = $_GET['code'];
-//echo "企業のコードは ".$val;
+
 
 
 session_start();
@@ -8,6 +7,37 @@ require_once('../config.php');
 require_once('../user_menu.php');
 require_once ('droplist.php');
 require_once ('../style.php');
+
+$id = $_SESSION['id'];
+
+try {
+    $pdo = new PDO(DSN, DB_USER, DB_PASS);
+    $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
+    if(!empty($_POST['pass'])){//合格ボタンを押されたら
+        $pass = $_POST['pass_1'];
+        $pass_1 = $_POST['pass'];
+        $stmt->execute([$pass_1,$id,$pass]);
+        echo "情報を更新しました";
+        echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
+        echo "<a href='recuruit_report_top.php'>次へ</a>";
+        require_once ("mail.php");
+        exit;
+    }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
+        $failure=$_POST['failure_1'];
+        $failure_1 =$_POST['failure'];
+        $stmt->execute([$failure_1,$id,$failure]);
+        echo "情報を更新しました";
+        echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
+        echo "<a href='recuruit_report_top.php'>次へ</a>";
+        require_once ("mail.php");
+        exit;
+    }
+} catch (\Exception $e) {
+    echo $e->getMessage() . PHP_EOL;
+}
+
+///////////////////////////////////////////////////////////////////
+
 $code = $_GET['code'];
 
 try {
@@ -62,20 +92,16 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 <body>
 	<?php
-//        session_start();
-        require_once('../config.php');
-        require_once ('../style.php');
-        require_once ('droplist.php');
 
         $id = $_SESSION['id'];
-         try {
+       /*  try {
              $pdo = new PDO(DSN, DB_USER, DB_PASS);
              $stmt = $pdo->prepare('select * from USER where ID = ?');
             $stmt->execute([$id]);
             $row = $stmt->fetch(PDO::FETCH_ASSOC);
         } catch (\Exception $e) {
              echo $e->getMessage() . PHP_EOL;
-    }?>
+    }*/?>
 
 
 <div>
@@ -136,35 +162,27 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             </div>
 
 
-	<form action="confirm.php" method="post">
+      <a href= "../recuruit/company_list.php">一覧に戻る</a></br>
+
+	<?php ///////////////////////////////////先生側の内定不合格選択/////////////////////////////////////////////////
+
+        if($row['RESULT'] == null || $contents != null){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
+
+				<?php $_SESSION['code'] = $code;?>
+
+				<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
+				<input type="hidden" name="pass_1" value="<?php echo $company;?>" ><br><br>
+				<input type="submit" name="pass" value="内定"style="width:10%;">
+				</form>
+				<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
+				<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
+				<input type="submit" name="failure" value="選考落ち"style="width:10%;">
+				</form>
+    <?php }?>
 
 
 
-	<input type="hidden" name="company" value="<?php echo $company;?>" >
-    <input type="hidden" name="company2" value= "<?php echo $company2;?>" >
-	<input type="hidden" name="address" value= "<?php echo $address;?>" >
-	<input type="hidden" name="tel" value= "<?php echo $tel;?>" >
-	<input type="hidden" name="date" value= "<?php echo $date;?>" >
-	<input type="hidden" name="hour1" value= "<?php echo $hour1;?>" >
-    <input type="hidden" name="hour2" value= "<?php echo $hour2;?>" >
-    <input type="hidden" name="min1" value= "<?php echo $min1;?>" >
-    <input type="hidden" name="min2" value= "<?php echo $min2;?>" >
-    <input type="hidden" name="purpose1" value= "<?php echo $purpose1;?>" >
-    <input type="hidden" name="purpose2" value= "<?php echo $purpose2;?>" >
-    <input type="hidden" name="purpose3" value= "<?php echo $purpose3;?>" >
-	<input type="hidden" name="code" value= "<?php echo $code;?>" >
-
-
-
-
-
-    <p></p>
-
-      <a href= "../recuruit/company_list.php">一覧に戻る</a>
-	 </form>
-
-
-<?php
+<?php  ///////////////////////////////////////前後移動/////////////////////////////////////////////////
     $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$company]);
     if($statement){
