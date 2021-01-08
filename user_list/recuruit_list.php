@@ -86,7 +86,7 @@ if($row_count != 0){
 
 	<!リンクで変数を遷移先に渡しその内容表示　!>
 	<?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
-	<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
+	<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=0 &name=<?php echo $_GET['name']?> &id=<?php echo $_GET['id']?>">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
 	<?php }
 	else{?>
 	<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=0">・<?=htmlspecialchars($row['COMPANY'],ENT_QUOTES,'UTF-8')?></a>
@@ -151,7 +151,8 @@ if($row_count != 0){
 <! 活動実績の内容の表示処理>
 
  <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
-		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1">
+		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1 &name=<?php echo $_GET['name']?> &id=<?php echo $_GET['id']?>">
+
 <?php }else{                                                                   //userの場合?>
 		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">
 <?php } ?>

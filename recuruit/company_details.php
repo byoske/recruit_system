@@ -161,8 +161,12 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
                		</div>
             </div>
 
-
+<?php if($_GET['name']==""){                //閲覧からの場合 ?>
       <a href= "../recuruit/company_list.php">一覧に戻る</a></br>
+<?php }else{                                //メールからの場合
+?>    <a href = "../recuruit/recuruit_report_top.php?name=<?php echo $_GET['name'];?>&id=<?php echo $_GET['id']?>"><?=htmlspecialchars("一覧",ENT_QUOTES,'UTF-8')?></a>
+<?php
+      }?>
 
 	<?php ///////////////////////////////////先生側の内定不合格選択/////////////////////////////////////////////////
 
@@ -195,23 +199,44 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             }
             $code2 = array_column($rows,'CODE');
         }
+
         //前へ戻る処理
         $i = 0;$b = 0;$c = $row_count -1;
-        while($c >= 0){
-            if($code > $code2[$c] && $b <= 0){$b++;
-            ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1">前へ</a><?php
-                        }
-                         $c--;
-                    }
 
-                  $c = 0;
-                   //次へ行く処理
-                    while($c <= $row_count -1){
-                         if($code < $code2[$c] && $i <= 0){$i++;
-                             ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1">次へ</a><?php
-                         }
-                         $c++;
-                    }
+        while($c >= 0){
+            if($_GET['name']==""){                  //nameが空白なら空白を送る
+                if($code > $code2[$c] && $b <= 0){
+                    $b++;
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name="" &id=""">前へ</a><?php
+                }
+            $c--;
+            }
+            else{                                   //nameが値が入っていたらそのまま送る
+                if($code > $code2[$c] && $b <= 0){
+                    $b++;
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">前へ</a><?php
+                }
+            $c--;
+            }
+        }
+        $c = 0;
+         //次へ行く処理
+        while($c <= $row_count -1){
+            if($_GET['name']==""){                  //nameが空白なら空白を送る
+                if($code < $code2[$c] && $i <= 0){
+                    $i++;
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name="" &id=""">次へ</a><?php
+                }
+            $c++;
+            }
+            else{                                   //nameが値が入っていたらそのまま送る
+                if($code < $code2[$c] && $i <= 0){
+                    $i++;
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">次へ</a><?php
+                }
+                $c++;
+            }
+        }
 
 
 

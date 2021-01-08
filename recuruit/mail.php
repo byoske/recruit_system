@@ -27,7 +27,7 @@ $message = "管理人者様
 
 下記URLよりご確認ください。
 
-https://192.168.10.160/recruit_system/recuruit/company_details.php?code=".$code."&name=".urlencode($name);
+https://192.168.10.157/recruit_system/recuruit/company_details.php?code=".$code."&name=".urlencode($name)."&id=".$id;
 
 $headers = $id."@nagoya-vti.ac.jp";
 

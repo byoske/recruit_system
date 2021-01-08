@@ -92,7 +92,7 @@ if($row_count != 0){
 
 ?>
 <tr>
-<td><a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>">・<?=htmlspecialchars($company,ENT_QUOTES,'UTF-8')?></a>&nbsp;&nbsp;&nbsp;
+<td><a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&name=""">・<?=htmlspecialchars($company,ENT_QUOTES,'UTF-8')?></a>&nbsp;&nbsp;&nbsp;
 
 	<?php
 	if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
