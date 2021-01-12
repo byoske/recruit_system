@@ -36,6 +36,7 @@ if(empty($_GET)) {
             //ポストされた値をLIKEで使えるように変換をしている
             $yourname = $_GET['yourname'];
             $like_yourname = "%".$yourname."%";
+            $_SESSION['yourname'] = $yourname;
             //プレースホルダへ実際の値を設定する
             $statement->bindValue(':name', $like_yourname, PDO::PARAM_STR);
 
@@ -106,20 +107,35 @@ if($row_count != 0){
     echo "<input type=hidden name=flag value='".$flag."'>";
     echo "</form>";
     echo "</td>";
-
-
-    echo "<td>";
-    echo "<form action=../user_delete/user_delete.php method=GET>";
-    echo "<input type=submit value=削除>";
-    echo "<input type=hidden name=id value='".$id."'>";
-    echo "<input type=hidden name=flag value='".$flag."'>";
-    echo "<input type=hidden name=yourname value='".$_GET['yourname']."'>";
-    echo "</td>";
-    echo "</form>";
-    echo "</td>";
-
-    echo "</tr>";
     ?>
+<script type="text/javascript">
+<!--
+function dispDelete(){
+
+  if(!window.confirm('本当に削除しますか？')){
+    window.alert('キャンセルされました'); // 警告ダイアログを表示
+    return false;
+  }
+  window.alert('削除されました');//削除ダイアログを表示
+  return true;
+}
+//------>
+</script>
+<html>
+<body>
+   <td>
+    <form action=../user_delete/user_delete.php method=GET>
+    <input type=submit value=削除 name=delete onClick= "return dispDelete()">
+    <?php echo $id;?>
+    <input type=hidden name=id <?php echo $id;?>>
+    <input type=hidden name=flag value=<?php echo $flag;?>>
+    <input type=hidden name=yourname value=<?php $_GET['yourname'] ?>>
+    </form>
+    </td>
+
+    </tr>
+    </body>
+</html>
 <?php
     }
 

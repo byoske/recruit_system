@@ -103,16 +103,32 @@ foreach ($table_datas as $table_name => $table_data) {
         echo "<input type=hidden name=flag value='".$flag."'>";
         echo "</form>";
         echo "</td>";
+?>
+<script type="text/javascript">
+<!--
+function dispDelete($this){
 
-        echo "<td>";
-        echo "<form action=../user_delete/user_delete.php method=post>";
-        echo "<input type=submit value=削除>";
-        echo "<input type=hidden name=id value='".$id."'>";
-        echo "<input type=hidden name=flag value='".$flag."'>";
-        echo "</td>";
-        echo "</form>";
-        echo "</td>";
-
+  if(!window.confirm('本当に削除しますか？')){
+    window.alert('キャンセルされました'); // 警告ダイアログを表示
+    return false;
+  }
+  window.alert('削除されました');//削除ダイアログを表示
+  return true;
+}
+//------>
+</script>
+<html>
+<body>
+        <td>
+        <form action=../user_delete/user_delete.php method=post >
+        <input type=submit value=削除 name=delete onClick= "return dispDelete(this)">
+        <input type=hidden name=id value=<?php echo $id;?>>
+        <input type=hidden name=flag value=<?php echo $flag;?>>
+        </form>
+        </td>
+</body>
+</html>
+<?php
         echo "</tr>";
 
 
