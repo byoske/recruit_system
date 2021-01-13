@@ -11,7 +11,7 @@ header('Pragma:');
 /***************************************/
 
 header("Content-type: text/html; charset=utf-8");
-
+/*
 if(empty($_GET)) {
     header("Location: pdo_search_form.html");
     exit();
@@ -20,13 +20,18 @@ if(empty($_GET)) {
     if (!isset($_GET['yourname'])  || $_GET['yourname'] === "" ){
         $errors['name'] = "名前が入力されていません。";
     }
-}
+}*/
 
+if(!empty($_GET['yourname'])){
+    $yourname = $_GET['yourname'];
+}else{
+    $yourname = $_SESSION['yourname'];
+}
 
     try{
         $dbh = new PDO(DSN, DB_USER, DB_PASS);
         //日本語が含まれているなら名前検索
-        if(preg_match( "/[ぁ-ん]+|[ァ-ヴー]+|[一-龠]/u", $_GET['yourname'])){
+        if(preg_match( "/[ぁ-ん]+|[ァ-ヴー]+|[一-龠]/u", $yourname)){
             $statement = $dbh->prepare("SELECT * FROM USER WHERE  NAME LIKE (:name) ");
         }else{//含まれていないならID 検索
             $statement = $dbh->prepare("SELECT * FROM USER WHERE  ID LIKE (:name) ");
@@ -34,11 +39,7 @@ if(empty($_GET)) {
 
         if($statement){
             //ポストされた値をLIKEで使えるように変換をしている
-            if(!empty($_GET['yourname'])){
-                $yourname = $_GET['yourname'];
-            }else{
-                $yourname = $_SESSION['yourname'];
-            }
+
             $like_yourname = "%".$yourname."%";
             $_SESSION['yourname'] = $yourname;
             //プレースホルダへ実際の値を設定する
@@ -115,7 +116,7 @@ if($row_count != 0){
     ?>
 <script type="text/javascript">
 <!--
-function dispDelete(){
+function dispDelete($this){
 
   if(!window.confirm('本当に削除しますか？')){
     window.alert('キャンセルされました'); // 警告ダイアログを表示
@@ -128,22 +129,21 @@ function dispDelete(){
 </script>
 <html>
 <body>
-   <td>
-
-    <form action=../user_delete/user_delete.php method=post >
-    <input type=submit value=削除  name=delete onClick= "return dispDelete()">
-    <input type=hidden name=id_pdo <?php echo $id;?>>
-    <input type=hidden name=flag value=<?php echo $flag?>>
-    <input type=hidden name=yourname value=<?php $_SESSION['yourname'] ?>>
-    </form>
-    </td>
-
-    </tr>
-    </body>
+        <td>
+        <form action=../user_delete/user_delete.php method=get >
+        <input type=submit value=削除 name=delete onClick= "return dispDelete(this)">
+        <input type=hidden name=id_pdo value=<?php echo $id;?>>
+        <input type=hidden name=flag value=<?php echo $flag;?>>
+        <input type=hidden name=yourname value=<?php echo $_SESSION['yourname']?>>
+        </form>
+        </td>
+</body>
 </html>
 <?php
+        echo "</tr>";
+
+
     }
-
-
+    echo "</table>";
 }
 ?>
