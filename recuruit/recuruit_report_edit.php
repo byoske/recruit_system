@@ -146,7 +146,7 @@
 	<?php  if($flg == 0){ ?>
 	<form action="confirm.php" method="post">
 
-	<!//////////confirmにて内容確認のために必要なものの定義///////////////>
+	<!--  //////////confirmにて内容確認のために必要なものの定義///////////////-->
 	<input type="hidden" name="company" value="<?php echo $company;?>" >
     <input type="hidden" name="company2" value= "<?php echo $company2;?>" >
 	<input type="hidden" name="address" value= "<?php echo $address;?>" >

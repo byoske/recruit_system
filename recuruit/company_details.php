@@ -1,14 +1,10 @@
 <?php
-
-
-
 session_start();
 require_once('../config.php');
 require_once('../user_menu.php');
 require_once ('droplist.php');
 require_once ('../style.php');
 
-$id = $_SESSION['id'];
 
 try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
@@ -16,20 +12,20 @@ try {
     if(!empty($_POST['pass'])){//合格ボタンを押されたら
         $pass = $_POST['pass_1'];
         $pass_1 = $_POST['pass'];
+        $name = $_POST['name'];
+        $id = $_POST['id'];
         $stmt->execute([$pass_1,$id,$pass]);
         echo "情報を更新しました";
-        echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
-        echo "<a href='recuruit_report_top.php'>次へ</a>";
-        require_once ("mail.php");
+        echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
         exit;
     }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
         $failure=$_POST['failure_1'];
         $failure_1 =$_POST['failure'];
+        $name = $_POST['name'];
+        $id = $_POST['id'];
         $stmt->execute([$failure_1,$id,$failure]);
         echo "情報を更新しました";
-        echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
-        echo "<a href='recuruit_report_top.php'>次へ</a>";
-        require_once ("mail.php");
+        echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
         exit;
     }
 } catch (\Exception $e) {
@@ -54,7 +50,6 @@ try {
 $user_id = $row['ID'];          //adminだけ表示させる
 $user_name = $row['NAME'];      //adminだけ表示させる
 $company = $row['COMPANY'];
-$company2 = $row['COMPANY2'];
 $address = $row['ADDRESS'];
 $tel = $row['TEL'];
 $date = $row['DATE'];
@@ -68,7 +63,8 @@ $purpose3 = $row['PURPOSE3'];
 $contents = $row['CONTENTS'];
 $schedule = $row['SCHEDULE'];
 $remarks = $row['REMARKS'];
-
+$_SESSION['Company'] = $row['COMPANY'];
+$name = $user_name;
 $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
@@ -162,24 +158,29 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             </div>
 
 <?php if($_GET['name']==""){                //閲覧からの場合 ?>
-      <a href= "../recuruit/company_list.php">一覧に戻る</a></br>
+      <a href= "../recuruit/company_list.php">一覧に戻る</a><br>
 <?php }else{                                //メールからの場合
 ?>    <a href = "../recuruit/recuruit_report_top.php?name=<?php echo $_GET['name'];?>&id=<?php echo $_GET['id']?>"><?=htmlspecialchars("一覧",ENT_QUOTES,'UTF-8')?></a>
 <?php
       }?>
 
 	<?php ///////////////////////////////////先生側の内定不合格選択/////////////////////////////////////////////////
-
-        if($row['RESULT'] == null || $contents != null){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
+      if($contents == null){
+            //何もしない
+      }else if($row['RESULT'] == null ){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
 
 				<?php $_SESSION['code'] = $code;?>
 
-				<form action="recuruit_report_edit.php" method="post"><!合格ボタンを押した際の処理 上に飛ぶ>
+				<form action="company_details.php" method="post"><!--  合格ボタンを押した際の処理 上に飛ぶ -->
 				<input type="hidden" name="pass_1" value="<?php echo $company;?>" ><br><br>
+				<input type="hidden" name = name value="<?php echo $name?>">
+				<input type="hidden" name = id value="<?php echo $user_id?>">
 				<input type="submit" name="pass" value="内定"style="width:10%;">
 				</form>
-				<form action="recuruit_report_edit.php" method="post"><!不合格ボタンをした際の処理　上に飛ぶ>
+				<form action="company_details.php" method="post"><!-- 不合格ボタンをした際の処理　上に飛ぶ-->
 				<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
+				<input type="hidden" name=name value="<?php echo $name?>">
+				<input type = "hidden" name = id value="<?php echo $user_id?>">
 				<input type="submit" name="failure" value="選考落ち"style="width:10%;">
 				</form>
     <?php }?>
@@ -207,7 +208,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code > $code2[$c] && $b <= 0){
                     $b++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name="" &id=""">前へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">前へ</a><?php
                 }
             $c--;
             }
@@ -225,7 +226,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code < $code2[$c] && $i <= 0){
                     $i++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name="" &id=""">次へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">次へ</a><?php
                 }
             $c++;
             }

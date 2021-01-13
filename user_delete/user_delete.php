@@ -7,8 +7,11 @@ if(!empty($_POST['id'])){
     $id = $_POST['id'];
 }
 else{
-    $id = $_GET['id'];
+    $id = $_POST['id_pdo'];
+    echo $_SESSION['pdo_id'];
+    echo "aa";
     echo $id;
+
 }
 
 if($id == "admin") {

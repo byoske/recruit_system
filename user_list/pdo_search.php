@@ -34,7 +34,11 @@ if(empty($_GET)) {
 
         if($statement){
             //ポストされた値をLIKEで使えるように変換をしている
-            $yourname = $_GET['yourname'];
+            if(!empty($_GET['yourname'])){
+                $yourname = $_GET['yourname'];
+            }else{
+                $yourname = $_SESSION['yourname'];
+            }
             $like_yourname = "%".$yourname."%";
             $_SESSION['yourname'] = $yourname;
             //プレースホルダへ実際の値を設定する
@@ -85,7 +89,8 @@ if($row_count != 0){
     foreach($rows as $row){
         ?>
 
-	<td><?= $id = $row['ID']?></td>
+	<td><?= $id = $row['ID'];
+	$_SESSION['pdo_id'] = $id; ?></td>
 	<?php if($id != "admin"){  ?>
 	<td><a href = "../recuruit/recuruit_report_top.php?id=<?php echo $id;?>&name=<?php echo $row['NAME'];?>&list_flag=<?php echo 0;?>&yourname=<?php echo $yourname;?>"><?=htmlspecialchars($row['NAME'],ENT_QUOTES,'UTF-8')?></td>
 <?php }else{?>
@@ -124,12 +129,12 @@ function dispDelete(){
 <html>
 <body>
    <td>
-    <form action=../user_delete/user_delete.php method=GET>
-    <input type=submit value=削除 name=delete onClick= "return dispDelete()">
-    <?php echo $id;?>
-    <input type=hidden name=id <?php echo $id;?>>
-    <input type=hidden name=flag value=<?php echo $flag;?>>
-    <input type=hidden name=yourname value=<?php $_GET['yourname'] ?>>
+
+    <form action=../user_delete/user_delete.php method=post >
+    <input type=submit value=削除  name=delete onClick= "return dispDelete()">
+    <input type=hidden name=id_pdo <?php echo $id;?>>
+    <input type=hidden name=flag value=<?php echo $flag?>>
+    <input type=hidden name=yourname value=<?php $_SESSION['yourname'] ?>>
     </form>
     </td>
 
