@@ -26,14 +26,22 @@ $name = 'none';
 
 $password = password_hash('passw0rd', PASSWORD_DEFAULT);
 
-//登録処理
-for($id; $id <= $id2 ;$id++){
-    try {
-         $stmt = $pdo->prepare("insert into user(ID,NAME,MAIL,PASSWORD) value(?, ?, ?, ?)");
-         $stmt->execute([$year.$id, $name ,$year.$id.'@nagoya-vti.ac.jp',  $password]);
-         echo $year.$id."登録完了</br>";
-    } catch (\Exception $e) {
-        echo  $year.$id.'は登録済みのidです。</br>';
-    }
+if($id > $id2){
+    $alert = "<script type='text/javascript'>alert('番号指定は左枠に小数値、右枠に大数値となるようにしてください。');</script>";
+    echo $alert;
+    echo '<meta http-equiv="refresh" content=" 0; url= admin_signUp.php">';
 }
-echo "<a href='../admin/admin.php'>ホームに戻る</a>";
+
+else{
+    //登録処理
+    for($id; $id <= $id2 ;$id++){
+        try {
+             $stmt = $pdo->prepare("insert into user(ID,NAME,MAIL,PASSWORD) value(?, ?, ?, ?)");
+             $stmt->execute([$year.$id, $name ,$year.$id.'@nagoya-vti.ac.jp',  $password]);
+             echo $year.$id."登録完了</br>";
+        } catch (\Exception $e) {
+            echo  $year.$id.'は登録済みのidです。</br>';
+        }
+    }
+    echo "<a href='../admin/admin.php'>ホームに戻る</a>";
+}
