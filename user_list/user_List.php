@@ -108,9 +108,8 @@ foreach ($table_datas as $table_name => $table_data) {
 <!--
 function dispDelete($id){
 
-	var idd = $id;
-	if(idd != "admin"){
-  if(!window.confirm('本当に削除しますか？==>'+idd)){
+	if($id != "admin"){
+  if(!window.confirm('本当に削除しますか？==>'+$id)){
     window.alert('キャンセルされました'); // 警告ダイアログを表示
     return false;
   }
