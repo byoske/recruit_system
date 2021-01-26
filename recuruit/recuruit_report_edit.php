@@ -206,8 +206,8 @@
 		<?php }
     }else if($row['RESULT'] != null ){
         ?><a href = "../recuruit/recuruit_report_edit.php?Edit=1&code=<?php echo $code;?>&flg=0" class="button" >編集</a></br><?php
-    $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
-    $statement-> execute([$company]);
+    $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? && COMPANY = ? ORDER BY CODE ASC ");
+    $statement-> execute([$id,$company]);
     if($statement){
         if($statement->execute()){
             //レコード件数取得

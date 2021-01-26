@@ -42,9 +42,9 @@ form dl dd{
    <form  action="login.php" method="post">
    <dl>
      <dt>ユーザー名</dt>
-     <dd><input type="text" name="id" size="50" onInput="checkForm(this)"></dd>
+     <dd><input required type="text" name="id" size="50" onInput="checkForm(this)"></dd>
      <dt>パスワード</dt>
-     <dd><input type="password" name="password" size="51"></dd><br>
+     <dd><input required type="password" name="password" size="51"></dd><br>
      <button type="submit">ログイン</button>
    </dl>
    </form>
