@@ -106,16 +106,17 @@ foreach ($table_datas as $table_name => $table_data) {
 ?>
 <script type="text/javascript">
 <!--
-function dispDelete($this){
+function dispDelete($id){
 
-<?php if($_SESSION["$id"] != "admin"){?>
-  if(!window.confirm('本当に削除しますか？')){
+	var idd = $id;
+	if(idd != "admin"){
+  if(!window.confirm('本当に削除しますか？==>'+idd)){
     window.alert('キャンセルされました'); // 警告ダイアログを表示
     return false;
   }
   window.alert('削除されました');//削除ダイアログを表示
   return true;
-  <?php }?>
+	}
 }
 //------>
 </script>
@@ -123,7 +124,7 @@ function dispDelete($this){
 <body>
         <td>
         <form action=../user_delete/user_delete.php method=post >
-        <input type=submit value=削除 name=delete onClick= "return dispDelete(this)">
+        <input type=submit value=削除 name=delete onClick= "return dispDelete('<?php echo $id;?>')">
         <input type=hidden name=id value=<?php echo $id;?>>
         <input type=hidden name=flag value=<?php echo $flag;?>>
         </form>

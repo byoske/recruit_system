@@ -116,15 +116,18 @@ if($row_count != 0){
     ?>
 <script type="text/javascript">
 <!--
-function dispDelete($this){
-	<?php if($_SESSION["$id"] != "admin"){?>
-  if(!window.confirm('本当に削除しますか？')){
+function dispDelete($id){
+
+	var idd = $id;
+	if(idd != "admin"){
+  if(!window.confirm('本当に削除しますか？==>'+idd)){
     window.alert('キャンセルされました'); // 警告ダイアログを表示
     return false;
   }
   window.alert('削除されました');//削除ダイアログを表示
   return true;
-  <?php }?>
+	}
+
 }
 //------>
 </script>
@@ -132,7 +135,7 @@ function dispDelete($this){
 <body>
         <td>
         <form action=../user_delete/user_delete.php method=get >
-        <input type=submit value=削除 name=delete onClick= "return dispDelete(this)">
+        <input type=submit value=削除 name=delete onClick= "return dispDelete('<?php echo $id;?>')">
         <input type=hidden name=id_pdo value=<?php echo $id;?>>
         <input type=hidden name=flag value=<?php echo $flag;?>>
         <input type=hidden name=yourname value=<?php echo $_SESSION['yourname']?>>
