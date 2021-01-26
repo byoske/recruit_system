@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+   <meta charset="utf-8">
+   <title>パスワード初期化</title>
+ </head>
+</html>
+
 <?php
 require_once('../admin_menu.php');
 require_once('../config.php');

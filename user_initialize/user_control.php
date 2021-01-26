@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+   <meta charset="utf-8">
+   <title>ユーザー登録内容初期化</title>
+ </head>
+</html>
+
 <?php
 
 require_once('../admin_menu.php');
@@ -49,7 +57,7 @@ if(!empty($_POST['id'])){
 
     //echo "<a href='../user_list/pdo_search.php'>戻る</a>"; こっちだと動かない
     ?>
-    <!DOCTYPE html>
+
     <button type="button" onclick=history.back()>戻る</button>
     <a href="#" onclick=history.back()>戻る</a>
     <?php
