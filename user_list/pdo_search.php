@@ -117,13 +117,14 @@ if($row_count != 0){
 <script type="text/javascript">
 <!--
 function dispDelete($this){
-
+	<?php if($_SESSION["$id"] != "admin"){?>
   if(!window.confirm('本当に削除しますか？')){
     window.alert('キャンセルされました'); // 警告ダイアログを表示
     return false;
   }
   window.alert('削除されました');//削除ダイアログを表示
   return true;
+  <?php }?>
 }
 //------>
 </script>
