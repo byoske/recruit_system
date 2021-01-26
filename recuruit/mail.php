@@ -25,7 +25,7 @@ $subject = "【就職活動報告】".$name."（企業名：".$Company."）";
 
 $message = "管理人者様
 
-下記URLよりご確認ください。。
+下記URLよりご確認ください。
 
 https://192.168.10.160/recruit_system/recuruit/company_details.php?code=".$code."&name=".urlencode($name)."&id=".$id;
 
