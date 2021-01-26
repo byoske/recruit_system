@@ -32,7 +32,7 @@ try {
     echo $e->getMessage() . PHP_EOL;
 }
 
-///////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////
 
 $code = $_GET['code'];
 
@@ -188,8 +188,13 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 <?php  ///////////////////////////////////////前後移動/////////////////////////////////////////////////
-    $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? AND COMPANY = ? ORDER BY CODE ASC ");
+      if($_GET['name']!=""){
+      $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? AND COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$user_id,$company]);
+      }else{
+          $statement = $pdo->prepare("SELECT * FROM REPORT WHERE  COMPANY = ? ORDER BY CODE ASC ");
+          $statement-> execute([$company]);
+      }
     if($statement){
         if($statement->execute()){
             //レコード件数取得
