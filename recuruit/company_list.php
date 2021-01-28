@@ -11,7 +11,11 @@
 
 <?php
 require_once('../config.php');
+/*******************ページング変更箇所************/
+include "../Numbers.php";
+/*******************ページング変更箇所************/
 session_start();
+
 if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {
     echo "<a href='../admin/admin.php'>ホームに戻る</a><br><br>";
 }
@@ -61,7 +65,10 @@ try {
     echo('Connection failed:'.$e->getMessage());
     die();
 }
+/*******************ページング変更箇所************/
 
+$count = 0; // データの総数
+/*************************************************/
 //テーブル指定
 //SHOW TABLE　でテーブル名を取得してそのテーブル名でセレクト文を作ってテーブルデータを取得する
 /*****************************************検索してない時************************************************/
@@ -133,19 +140,23 @@ foreach ($table_datas as $table_name => $table_data) {
         foreach ($record_data as $column_name => $val) {
 
             if ((!isset($_GET['yourname'])  || $_GET['yourname'] === "" )&&(!isset($_GET['yourname2'])  || $_GET['yourname2'] === "" )){   //検索に何もない時
-
-            ?>
-
+                /*******************ページング変更箇所************/
+                $data[] = $val;
+                $count = $count+1; // データの総数
+                /*******************ページング変更箇所************/
+                $yourname = "";
+                $yourname2 = "";
+           /* ?>
 			<td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
             </html>
-            <?php
+            <?php */
             }
             }
+
                 echo "</tr>";
-
-
     }
-    echo "</table>";
+
+ echo "</table>";
 }
 
 /************************************************************************************************/
@@ -206,23 +217,29 @@ $not_companys = '';
             //含む検索の場合   if文（yournameに入っていて、yourname2に入っていない場合）
             if((!(!isset($_GET['yourname'])  ||( $_GET['yourname'] === "") ))&&(!isset($_GET['yourname2'])  ||( $_GET['yourname2'] === "") )){
                 if (strpos($companys, $val) !== false) {            // companysに含む企業を表示
-                    ?><td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
-           				 </html>
+                    $data[] = $val;
+                    $count = $count+1; // データの総数
+                    ?>
       <?php     }
+                $yourname2 = "";
             }
             //含まない検索の場合 if文（yournameに入っていなくて、yourname2に入っている場合）
             elseif((!(!isset($_GET['yourname2'])  ||( $_GET['yourname2'] === "") ))&&(!isset($_GET['yourname'])  ||( $_GET['yourname'] === "") )){
                 if (strpos($not_companys, $val) === false) {            // companysに含まれない企業を表示
-                        ?><td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
-           				 </html>
+                    $data[] = $val;
+                    $count = $count+1; // データの総数
+                        ?>
       <?php     }
+                 $yourname = "";
             }
             //両方の検索の場合 if文（yourname2に入っていて、yournameにも入っている場合）
             elseif((!(!isset($_GET['yourname2'])  ||( $_GET['yourname2'] === "") ))&&(!(!isset($_GET['yourname'])  ||( $_GET['yourname'] === "") ))){
                 if ((strpos($not_companys, $val) === false) &&(strpos($companys, $val) !== false)){
-                    ?><td><a href = "../recuruit/company_search.php?id=<?php echo $val;?>">・<?=htmlspecialchars($val,ENT_QUOTES,'UTF-8')?></a></td>
-           				 </html>
+                    $data[] = $val;
+                    $count = $count+1; // データの総数
+                    ?>
       <?php     }
+
             }
 
 
@@ -232,6 +249,31 @@ $not_companys = '';
     echo "</table>";
 }
 /************************************************************************************************/
+/*******************ページング変更箇所************/
+if($count !=0){
+        $perPage = 20; // １ページあたりのデータ件数
+        $totalPage = ceil($count / $perPage); // 最大ページ数
+        $page = empty($_GET['page']) ? 1 : (int) $_GET['page']; // 現在のページ
+        function filterData($page, $perPage, $data) {
+           return array_filter($data, function($i) use ($page, $perPage) {
+              return $i >= ($page - 1) * $perPage && $i < $page * $perPage;
+          }, ARRAY_FILTER_USE_KEY);
+        }
+        $filterData = filterData($page, $perPage, $data);
 
 
+        foreach ($filterData as $data) {
+           ?>   <a href = "../recuruit/company_search.php?id=<?php echo $data; ?>">・<?=htmlspecialchars($data,ENT_QUOTES,'UTF-8')?></a><br>
+		<?php  //     print '<li>' . $data . '</li>';
+           }
+            echo "<br><br>";
+           ?>
+		<div>
+		<?php
+		paging2($totalPage, $page,2 ,$yourname, $yourname2);
+		?>
+		</div>
+ 		<?php
+           /*******************ページング変更箇所************/
+}
 ?>
