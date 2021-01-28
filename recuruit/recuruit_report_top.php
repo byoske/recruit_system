@@ -6,20 +6,24 @@
 ?>
 <!DOCTYPE html>
 <html lang="ja">
- <head>
-   <meta charset="utf-8">
-   <title>就職活動報告</title>
- </head>
- <body>
 
 <?php
 if (isset($_SESSION['id']) && $_SESSION['id'] == 'admin') {     //adminの場合
     $val = $_GET['name'];
 ?>
-
+ <head>
+   <meta charset="utf-8">
+   <title><?php echo $val;?> - 就職活動状況</title>
+ </head>
+ <body>
 <h1><?php echo $val."(".$_GET['id'].")";?></h1>
-<?php }else{ ?>
 
+<?php }else{ ?>
+ <head>
+   <meta charset="utf-8">
+   <title>就職活動報告</title>
+ </head>
+ <body>
 <h1>就職活動報告</h1>
 <?php }?>
 

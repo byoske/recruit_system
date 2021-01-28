@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+   <meta charset="utf-8">
 <?php
 session_start();
 require_once('../config.php');
@@ -10,6 +14,9 @@ try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
     $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
     if(!empty($_POST['pass'])){//合格ボタンを押されたら
+?>
+<title> 選考状況更新</title>
+<?php
         $pass = $_POST['pass_1'];
         $pass_1 = $_POST['pass'];
         $name = $_POST['name'];
@@ -19,6 +26,9 @@ try {
         echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
         exit;
     }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
+?>
+<title> 選考状況更新</title>
+<?php
         $failure=$_POST['failure_1'];
         $failure_1 =$_POST['failure'];
         $name = $_POST['name'];
@@ -78,13 +88,10 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 ?>
 
 
-<!DOCTYPE html>
-<html lang="ja">
- <head>
-   <meta charset="utf-8">
-   <title>就職報告</title>
+
+   <title><?php echo $company;?> - <?php if($contents == null){ ?>就職活動中報告画面<?php }else{?>就職活動実績報告画面<?php }?></title>
  </head>
- <h1>就職活動実績報告画面</h1>
+ <h1>就職活動報告画面</h1>
 
 <body>
 	<?php

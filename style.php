@@ -1,7 +1,9 @@
 <!DOCTYPE>
 <html lang="ja">
 <head>
+<!--
 <title>お問い合わせフォーム</title>
+-->
 <style rel="stylesheet" type="text/css">
 
 
