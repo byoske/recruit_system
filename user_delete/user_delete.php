@@ -29,14 +29,14 @@ try {
 
 if(!empty($_POST['id'])){
     if($_POST['flag']==1){
-        require('../user_list/user_List.php');
+      echo ' <meta http-equiv="refresh" content="0; url=../user_list/user_List.php">';
     }
     else{
-        require('../user_list/pdo_search.php');
+        echo ' <meta http-equiv="refresh" content="0; url=../user_list/pdo_search.php">';
     }
 }
 else{
-    require('../user_list/pdo_search.php');
+    echo ' <meta http-equiv="refresh" content="0; url=../user_list/pdo_search.php">';
 
 }
 ?>

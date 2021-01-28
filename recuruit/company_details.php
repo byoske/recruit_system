@@ -213,7 +213,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code > $code2[$c] && $b <= 0){
                     $b++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">前へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">次へ</a><?php
                 }
             $c--;
             }
@@ -231,7 +231,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code < $code2[$c] && $i <= 0){
                     $i++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">次へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">前へ</a><?php
                 }
             $c++;
             }

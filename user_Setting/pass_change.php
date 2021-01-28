@@ -28,11 +28,11 @@ form dl dd{
    <form action="change_rejistrate.php" method="post">
    <dl>
 	<dt>旧パスワード</dt>
-    <dd><input type="password" name="password1" size="50"></dd>
+    <dd><input required type="password" name="password1" size="50"></dd>
 	<dt>新パスワード</dt>
-    <dd><input type="password" name="password2" size="50"></dd>
+    <dd><input required type="password" name="password2" size="50"></dd>
 	<dt>新パスワード確認</dt>
-    <dd><input type="password" name="password3" size="50"></dd><br>
+    <dd><input required type="password" name="password3" size="50"></dd><br>
     <button type="submit">登録</button>
     <p>※パスワードは半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。</p>
    </dl>

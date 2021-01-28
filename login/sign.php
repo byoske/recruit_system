@@ -20,6 +20,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != 'admin') {
 <html lang="ja">
  <head>
    <meta charset="utf-8">
+     <link rel="icon" type="image/png" href="../Free_File.jpg">
    <title>Login</title>
    <?php   //require_once ('../style.php');?>
       <style>
