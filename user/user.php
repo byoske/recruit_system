@@ -3,6 +3,7 @@
  <head>
    <meta charset="utf-8">
    <title>ユーザー画面</title>
+   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/base-min.css">
  </head>
  <body>
  <?php

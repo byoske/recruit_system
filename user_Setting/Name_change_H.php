@@ -76,9 +76,9 @@ form dl dd{
    		<form action="Name_change_H.php" method="post">
    		<dl>
 		<dt>名前入力</dt>
-    	<dd><input type="text" name="name" size="50"></dd>
+    	<dd><input type="text" name="name" size="50" onInput="checkForm(this)"></dd>
     	<dt>名前再入力</dt>
-    	<dd><input type="text" name="name2" size="50"></dd>
+    	<dd><input type="text" name="name2" size="50" onInput="checkForm(this)"></dd>
     	<input type="submit"  name="yes" value="登録">
    		</dl>
    		</form>
@@ -133,9 +133,9 @@ form dl dd{
    		<form action="Name_change_H.php" method="post">
    		<dl>
 		<dt>名前入力</dt>
-    	<dd><input type="text" name="name" size="50"></dd>
+    	<dd><input type="text" name="name" size="50" onInput="checkForm(this)"></dd>
     	<dt>名前再入力</dt>
-    	<dd><input type="text" name="name2" size="50"></dd>
+    	<dd><input type="text" name="name2" size="50"  onInput="checkForm(this)"></dd>
     	<input type="submit"  name="yes" value="登録">
     	<p>※名前変更は一度のみのため間違えのないよう入力してください。</p>
    		</dl>
@@ -154,4 +154,15 @@ form dl dd{
  }?>
 
 </html>
+   <script type="text/javascript">
+   <!--
+   function checkForm($this) {
+       var str=$this.value;
+       while(str.match(/[A-Z a-z\d]/)) {
+           str=str.replace(/[A-Z a-z\d]/,"");
+       }
+       $this.value=str;
+   }
+   //-->
+   </script>
 
