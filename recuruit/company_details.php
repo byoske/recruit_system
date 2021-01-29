@@ -15,7 +15,7 @@ try {
     if(empty($_POST['flg_1'])){
         $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
     }else{
-        $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ? AND SCHEDULE = ? , REMARKS = ? WHERE ID = ? AND COMPANY = ?');
+        $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ? , SCHEDULE = ? , REMARKS = ? WHERE ID = ? AND COMPANY = ?');
     }
     if(!empty($_POST['flg_1'])){
         $stmt->execute([$_POST['Contents'],$_POST['Schedule'],$_POST['Remarks'],$_POST['id_up'],$_POST['com']]);
