@@ -14,7 +14,7 @@ try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
     $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
     if(!empty($_POST['pass'])){//合格ボタンを押されたら
-?>
+        ?>
 <title> 選考状況更新</title>
 <?php
         $pass = $_POST['pass_1'];
@@ -26,7 +26,7 @@ try {
         echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
         exit;
     }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
-?>
+        ?>
 <title> 選考状況更新</title>
 <?php
         $failure=$_POST['failure_1'];
@@ -89,9 +89,11 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 
+
    <title><?php echo $company;?> - <?php if($contents == null){ ?>就職活動中報告画面<?php }else{?>就職活動実績報告画面<?php }?></title>
+
  </head>
- <h1>就職活動報告画面</h1>
+ <h1>就職活動実績報告画面</h1>
 
 <body>
 	<?php
@@ -147,21 +149,36 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
                     <p><?php echo $purpose1; ?> <?php echo $purpose2; ?> <?php echo $purpose3; ?></p>
                </div>
 
+					<?php if(empty($_GET['flg'])){?>
 
-               		<div class="element_wrap">
-                    <label>実施内容</label>
-                    <p><?php echo $contents; ?></p>
-              		</div>
+                   		<div class="element_wrap">
+                        <label>実施内容</label>
+                        <p><?php echo $contents; ?></p>
+                  		</div>
 
-         	 	     <div class="element_wrap">
-                    <label>今後のスケジュール</label>
-                    <p><?php echo $schedule; ?></p>
-            	    </div>
+             	 	     <div class="element_wrap">
+                        <label>今後のスケジュール</label>
+                        <p><?php echo $schedule; ?></p>
+                	    </div>
 
-              		<div class="element_wrap">
-                    <label>備考</label>
-                    <p><?php echo $remarks; ?></p>
-               		</div>
+                  		<div class="element_wrap">
+                        <label>備考</label>
+                        <p><?php echo $remarks; ?></p>
+                   		</div>
+               		<?php }else if($_GET['flg'] == 0){?>
+               			<div class="element_wrap">
+    					<label for="i_contents">実施内容</label>
+                    	<textarea required name = "Contents" rows="10"   placeholder="説明された内容、試験・面接内容など記載"><?php if(!empty($_GET['Edit'])) echo $row['CONTENTS']; ?></textarea>
+                    	</div>
+                    	<div class="element_wrap">
+                    	<label for="i_schedule">今後のスケジュール</label>
+                    	<textarea required rows = "10"name = "Schedule"   placeholder="この後の採用試験、採用試験の結果通知の日程等を記載"><?php if(!empty($_GET['Edit'])) echo $row['SCHEDULE']; ?></textarea>
+                    	</div>
+                    	<div class="element_wrap">
+                    	<label for="i_remarks">備考</label>
+                    	<textarea required rows = "10" name = "Remarks"  placeholder="入社への意向など特記事項"><?php if(!empty($_GET['Edit'])) echo $row['REMARKS']; ?></textarea>
+                    	</div>
+                	<?php }?>
             </div>
 
 <?php if($_GET['name']==""){                //閲覧からの場合 ?>
@@ -195,6 +212,9 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 <?php  ///////////////////////////////////////前後移動/////////////////////////////////////////////////
+      if($row['CONTENTS'] != NULL && $_SESSION['id'] === 'admin'){?>
+          <a href = "../recuruit/company_details.php?Edit=1&code=<?php echo $code;?>&flg=0 &name=" class="button" >編集</a></br>
+    <?php  }
       if($_GET['name']!=""){
       $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? AND COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$user_id,$company]);
@@ -220,14 +240,14 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code > $code2[$c] && $b <= 0){
                     $b++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">次へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&name=&id=">次へ</a><?php
                 }
             $c--;
             }
             else{                                   //nameが値が入っていたらそのまま送る
                 if($code > $code2[$c] && $b <= 0){
                     $b++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">前へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">前へ</a><?php
                 }
             $c--;
             }
@@ -238,14 +258,14 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code < $code2[$c] && $i <= 0){
                     $i++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=&id=">前へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?> &name=&id=">前へ</a><?php
                 }
             $c++;
             }
             else{                                   //nameが値が入っていたらそのまま送る
                 if($code < $code2[$c] && $i <= 0){
                     $i++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&flg=1 &name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">次へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?> &name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">次へ</a><?php
                 }
                 $c++;
             }
