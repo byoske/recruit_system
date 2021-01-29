@@ -151,7 +151,7 @@ if($row_count != 0){
 <! 活動実績の内容の表示処理>
 
  <?php if(isset($_SESSION['id']) && $_SESSION['id'] == 'admin'){        //adminの場合 ?>
-		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&flg=1 &name=<?php echo $_GET['name']?> &id=<?php echo $_GET['id']?>">
+		<a href = "../recuruit/company_details.php?code=<?php echo $row['CODE'];?>&list_flg=1 &name=<?php echo $_GET['name']?> &id=<?php echo $_GET['id']?>">
 
 <?php }else{                                                                   //userの場合?>
 		<a href = "../recuruit/recuruit_report_edit.php?code=<?php echo $row['CODE'];?>&flg=1">

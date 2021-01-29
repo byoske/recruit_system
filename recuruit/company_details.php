@@ -12,7 +12,22 @@ require_once ('../style.php');
 
 try {
     $pdo = new PDO(DSN, DB_USER, DB_PASS);
-    $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
+    if(empty($_POST['flg_1'])){
+        $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
+    }else{
+        $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ? AND SCHEDULE = ? , REMARKS = ? WHERE ID = ? AND COMPANY = ?');
+    }
+    if(!empty($_POST['flg_1'])){
+        $stmt->execute([$_POST['Contents'],$_POST['Schedule'],$_POST['Remarks'],$_POST['id_up'],$_POST['com']]);
+        echo "情報を更新しました";
+        if($_POST['name_up'] != ""){
+              echo "<a href='../recuruit/recuruit_report_top.php?name=".$_POST['name_up']."&id=".$_POST['id_up']." '>次へ</a>";
+        }else{
+             echo '<a href= "../recuruit/company_list.php">次へ</a><br>';
+        }
+        exit;
+
+    }
     if(!empty($_POST['pass'])){//合格ボタンを押されたら
         ?>
 <title> 選考状況更新</title>
@@ -165,7 +180,15 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
                         <label>備考</label>
                         <p><?php echo $remarks; ?></p>
                    		</div>
-               		<?php }else if($_GET['flg'] == 0){?>
+                   		<?php
+                        if($row['CONTENTS'] != NULL && $_SESSION['id'] === 'admin' && $_GET['name'] == ""){?>
+          					<a href = "../recuruit/company_details.php?Edit=1&code=<?php echo $code;?>&flg=0 &name=" class="button" >編集</a></br>
+    					<?php  }else if($row['CONTENTS'] != NULL && $_SESSION['id'] === 'admin' && $_GET['name'] != ""){?>
+        					<a href = "../recuruit/company_details.php?Edit=1&code=<?php echo $code;?>&flg=0 &name=<?php echo $_GET['name']?> &id=<?php echo $_GET['id']?>" class="button" >編集</a></br>
+    					<?php }
+
+               		 }else if($_GET['flg'] == 0){?>
+               		<form action="company_details.php" method="post">
                			<div class="element_wrap">
     					<label for="i_contents">実施内容</label>
                     	<textarea required name = "Contents" rows="10"   placeholder="説明された内容、試験・面接内容など記載"><?php if(!empty($_GET['Edit'])) echo $row['CONTENTS']; ?></textarea>
@@ -178,17 +201,24 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
                     	<label for="i_remarks">備考</label>
                     	<textarea required rows = "10" name = "Remarks"  placeholder="入社への意向など特記事項"><?php if(!empty($_GET['Edit'])) echo $row['REMARKS']; ?></textarea>
                     	</div>
+                    	<input type = hidden name = com value = <?php echo $company?>>
+            			<input type = hidden name = id_up value = <?php echo $user_id?>>
+            			<input type = hidden name = name_up value = <?php echo $_GET['name']?>>
+                    	<input type = hidden name = flg_1 value = 1>
+                    	<INPUT type="reset" name="reset" value="入力内容をリセットする">
+ 	  		   			<input type="submit"name="btn_confirm" value="入力内容を更新する">
+
+                    	</form>
                 	<?php }?>
             </div>
 
-<?php if($_GET['name']==""){                //閲覧からの場合 ?>
+<?php
+             if($_GET['name']==""){                //閲覧からの場合 ?>
       <a href= "../recuruit/company_list.php">一覧に戻る</a><br>
 <?php }else{                                //メールからの場合
 ?>    <a href = "../recuruit/recuruit_report_top.php?name=<?php echo $_GET['name'];?>&id=<?php echo $_GET['id']?>"><?=htmlspecialchars("一覧",ENT_QUOTES,'UTF-8')?></a>
-<?php
-      }?>
 
-	<?php ///////////////////////////////////先生側の内定不合格選択/////////////////////////////////////////////////
+	<?php }///////////////////////////////////先生側の内定不合格選択/////////////////////////////////////////////////
       if($contents == null  || $_SESSION['id'] != 'admin'){
             //何もしない
       }else if($row['RESULT'] == null ){//リザルトの中に何も入っていなかったら表示、活動実績からのリンク?>
@@ -211,10 +241,8 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 
-<?php  ///////////////////////////////////////前後移動/////////////////////////////////////////////////
-      if($row['CONTENTS'] != NULL && $_SESSION['id'] === 'admin'){?>
-          <a href = "../recuruit/company_details.php?Edit=1&code=<?php echo $code;?>&flg=0 &name=" class="button" >編集</a></br>
-    <?php  }
+<?php
+      ///////////////////////////////////////前後移動/////////////////////////////////////////////////
       if($_GET['name']!=""){
       $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? AND COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$user_id,$company]);
@@ -274,7 +302,9 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 
 
 
-         }?>
+         }
+
+?>
 </body>
 </script>
 </html>
