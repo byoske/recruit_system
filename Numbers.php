@@ -5,6 +5,7 @@
  * @param int $page 現在のページ番号
  * @param int $pageRange $pageから前後何件のページ番号を表示するか
  */
+
 function paging2($totalPage, $page = 1, $pageRange = 2 ,$yourname, $yourname2){
 
     // ページ番号
