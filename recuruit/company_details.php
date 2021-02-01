@@ -298,7 +298,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
             else{                                   //nameが値が入っていたらそのまま送る
                 if($code < $code2[$c] && $i <= 0){
                     $i++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?> &name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">次へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&name=<?php echo $_GET['name'];?> &id=<?php echo $_GET['id']?>">次へ</a><?php
                 }
                 $c++;
             }
