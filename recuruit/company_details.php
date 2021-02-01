@@ -18,6 +18,7 @@ try {
         $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ? , SCHEDULE = ? , REMARKS = ? WHERE ID = ? AND COMPANY = ?');
     }
     if(!empty($_POST['flg_1'])){
+        echo '<title>更新</title>';
         $stmt->execute([$_POST['Contents'],$_POST['Schedule'],$_POST['Remarks'],$_POST['id_up'],$_POST['com']]);
         echo "情報を更新しました";
         if($_POST['name_up'] != ""){
@@ -265,9 +266,11 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
         $i = 0;$b = 0;$c = $row_count -1;
 
         while($c >= 0){
+
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code > $code2[$c] && $b <= 0){
                     $b++;
+
                     ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&name=&id=">次へ</a><?php
                 }
             $c--;
@@ -283,10 +286,12 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
         $c = 0;
          //次へ行く処理
         while($c <= $row_count -1){
+
             if($_GET['name']==""){                  //nameが空白なら空白を送る
                 if($code < $code2[$c] && $i <= 0){
+
                     $i++;
-                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?> &name=&id=">前へ</a><?php
+                    ?><a href = "company_details.php?code=<?php echo $code2[$c];?>&name=&id=">前へ</a><?php
                 }
             $c++;
             }

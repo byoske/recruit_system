@@ -14,18 +14,18 @@
             $pass = $_POST['pass_1'];
             $pass_1 = $_POST['pass'];
             $stmt->execute([$pass_1,$id,$pass]);
+            $_SESSION['Company'] = $_POST['pass'];
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
-            echo "<a href='recuruit_report_top.php'>次へ</a>";
             require_once ("mail.php");
             exit;
         }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
             $failure=$_POST['failure_1'];
             $failure_1 =$_POST['failure'];
             $stmt->execute([$failure_1,$id,$failure]);
+            $_SESSION['Company'] = $_POST['failure'];
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
-            echo "<a href='recuruit_report_top.php'>次へ</a>";
             require_once ("mail.php");
             exit;
         }
