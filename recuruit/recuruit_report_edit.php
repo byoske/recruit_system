@@ -204,7 +204,7 @@
 				</form>
 
 		<?php }
-    }else if($row['RESULT'] != null ){
+    }
         ?><a href = "../recuruit/recuruit_report_edit.php?Edit=1&code=<?php echo $code;?>&flg=0" class="button" >編集</a></br><?php
     $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? AND COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$id,$company]);
@@ -240,7 +240,7 @@
              //echo '<br>',"<a href='#' onclick=history.back()>戻る</a>";
 
          }
-         }?>
+         ?>
 <br>
 <a href= "../recuruit/recuruit_report_top.php">一覧に戻る</a>
 </body>
