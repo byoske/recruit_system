@@ -5,7 +5,12 @@ $name = $_SESSION['name'];
 $Company =$_SESSION['Company'];
 mb_language("Japanese");
 mb_internal_encoding("UTF-8");
-
+if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+    $uri = 'https://';
+} else {
+    $uri = 'http://';
+}
+$uri .=$_SERVER['HTTP_HOST'];
 try {
     $dbh = new PDO(DSN, DB_USER, DB_PASS);
     $stmt = ("SELECT * FROM `user` WHERE ID IN('admin')");
@@ -25,9 +30,9 @@ $subject = "【就職活動報告】".$name."（企業名：".$Company."）";
 
 $message = "管理人者様
 
-下記URLよりご確認ください。
+下記URLよりご確認ください。"
 
-https://192.168.10.157/recruit_system/recuruit/company_details.php?code=".$code."&name=".urlencode($name)."&id=".$id;
+.$uri."/recruit_system/recuruit/company_details.php?code=".$code."&name=".urlencode($name)."&id=".$id;
 
 $headers = $id."@nagoya-vti.ac.jp";
 

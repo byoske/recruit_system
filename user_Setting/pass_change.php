@@ -7,7 +7,7 @@ require_once('../user_menu.php');
 <html lang="ja">
  <head>
    <meta charset="utf-8">
-   <title>Login</title>
+   <title>パスワード変更</title>
    <style>
 
    form dl dt{

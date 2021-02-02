@@ -21,7 +21,7 @@ $mail = $row['MAIL'];
 <html lang="ja">
  <head>
    <meta charset="utf-8">
-   <title>Login</title>
+   <title>メールアドレス変更</title>
    <style>
    form dl dt{
   width: 200px;

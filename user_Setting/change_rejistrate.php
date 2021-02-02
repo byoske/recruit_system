@@ -23,6 +23,8 @@ if (password_verify($_POST['password1'], $row['PASSWORD'])) {
     session_regenerate_id(true); //session_idを新しく生成し、置き換える
 
     if ($password2 != $password3) {
+?>      <title>パスワード変更未完了</title>
+<?php
         echo '新パスワードが間違っています。<br />';
         echo "<a href = '../user_Setting/pass_change.php'>戻る";
         return false;
@@ -31,7 +33,8 @@ if (password_verify($_POST['password1'], $row['PASSWORD'])) {
     if (preg_match('/\A(?=.*?[a-z])(?=.*?\d)[a-z\d]{8,100}+\z/i', $password2)) {
         $password2 = password_hash($password2, PASSWORD_DEFAULT);
     } else {
-        echo 'パスワードは半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。<br />';
+?>        <title>パスワード変更未完了</title>
+ <?php  echo 'パスワードは半角英数字をそれぞれ1文字以上含んだ8文字以上で設定してください。<br />';
         echo "<a href = '../user_Setting/pass_change.php'>戻る";
         return false;
     }
@@ -44,8 +47,8 @@ if (password_verify($_POST['password1'], $row['PASSWORD'])) {
     } catch (\Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
-
-    echo 'パスワード変更しました。<br />';
+?>    <title>パスワード変更完了</title>
+<?php echo 'パスワード変更しました。<br />';
     echo '自動的にログアウトするので、再度ログインしてください。<br />';
     echo '※ブラウザから戻るはしないでください。<br /><br />';
     echo '10秒経ってもページが切り替わらない場合は、下記ログアウトをクリックしてください。<br />';
