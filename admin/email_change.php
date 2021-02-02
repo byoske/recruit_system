@@ -31,6 +31,9 @@ try {
     session_regenerate_id(true); //session_idを新しく生成し、置き換える
 
     if ($email2 != $email3) {
+ ?>
+        <title>メールアドレス登録未完了</title>
+ <?php
         echo '正しくメールアドレスを入力してください。<br />';
         echo "<a href = '../admin/admin_emailchange.php'>戻る";
         return false;
@@ -47,8 +50,8 @@ try {
     } catch (\Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
-
-    echo 'メールアドレスを変更しました。<br />';
-    echo "<a href='../admin/admin.php'>ホームに戻る</a>";
+?>    <title>メールアドレス登録完了</title>
+<?php echo 'メールアドレスを変更しました。<br />';
+      echo "<a href='../admin/admin.php'>ホームに戻る</a>";
 
 

@@ -4,7 +4,7 @@
  <html lang="ja">
  <head>
    <meta charset="utf-8">
-   <title>Login</title>
+   <title>名前変更</title>
    <style>
 
    form dl dt{
