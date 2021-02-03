@@ -15,11 +15,11 @@ try {
     if(empty($_POST['flg_1'])){
         $stmt = $pdo->prepare('UPDATE REPORT SET RESULT = ?  WHERE ID = ? AND COMPANY = ?');
     }else{
-        $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ? , SCHEDULE = ? , REMARKS = ? WHERE ID = ? AND COMPANY = ?');
+        $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ? , SCHEDULE = ? , REMARKS = ? WHERE CODE = ? AND COMPANY = ?');
     }
     if(!empty($_POST['flg_1'])){
         echo '<title>更新</title>';
-        $stmt->execute([$_POST['Contents'],$_POST['Schedule'],$_POST['Remarks'],$_POST['id_up'],$_POST['com']]);
+        $stmt->execute([$_POST['Contents'],$_POST['Schedule'],$_POST['Remarks'],$_POST['code_up'],$_POST['com']]);
         echo "情報を更新しました";
         if($_POST['name_up'] != ""){
               echo "<a href='../recuruit/recuruit_report_top.php?name=".$_POST['name_up']."&id=".$_POST['id_up']." '>次へ</a>";
@@ -205,6 +205,7 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
                     	<input type = hidden name = com value = <?php echo $company?>>
             			<input type = hidden name = id_up value = <?php echo $user_id?>>
             			<input type = hidden name = name_up value = <?php echo $_GET['name']?>>
+            			<input type = hidden name = code_up value = <?php echo $_GET['code']?>>
                     	<input type = hidden name = flg_1 value = 1>
                     	<INPUT type="reset" name="reset" value="入力内容をリセットする">
  	  		   			<input type="submit"name="btn_confirm" value="入力内容を更新する">
