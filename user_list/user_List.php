@@ -179,14 +179,15 @@ function dispDelete($id){
         echo "</tr>";
     }
     echo "</table><br>";
-    if($max_year > $yourname){
-    ?>
-	<td><a href ="?yourname=<?php echo $yourname+1;?>&min_year=<?php echo $min_year;?>&max_year=<?php echo $max_year;?>"><?=htmlspecialchars($yourname+1)?></td>
-<?php  echo "年度へ";
-    }
+
 	if($min_year < $yourname){?>
 	<td><a href ="?yourname=<?php echo $yourname-1;?>&min_year=<?php echo $min_year;?>&max_year=<?php echo $max_year;?>"><?=htmlspecialchars($yourname-1)?></td>
 <?php   echo "年度へ";
+    }
+    if($max_year > $yourname){
+        ?>
+	<td><a href ="?yourname=<?php echo $yourname+1;?>&min_year=<?php echo $min_year;?>&max_year=<?php echo $max_year;?>"><?=htmlspecialchars($yourname+1)?></td>
+<?php  echo "年度へ";
     }
 }
 ?>
