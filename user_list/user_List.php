@@ -22,9 +22,7 @@ if(empty($_GET)) {
     }
 }*/
 
-echo "aaaaaaaaaaaaaa";
 if(!empty($_GET['yourname'])){
-    echo "iiiiiiii";
     $yourname = $_GET['yourname'];
     $min_year = $_GET['min_year'];
     $max_year = $_GET['max_year'];
@@ -34,7 +32,6 @@ if(!empty($_GET['yourname'])){
   /************************一番新しい年度を検索する******************************/
     for($yourname=2018; $yourname <2100; $yourname++){
     $dbh = new PDO(DSN, DB_USER, DB_PASS);
-    echo $yourname;
     $statement = $dbh->prepare("SELECT * FROM USER WHERE  ID LIKE (:name) ");
 
     if($statement){
