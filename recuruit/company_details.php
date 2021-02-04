@@ -39,7 +39,11 @@ try {
         $id = $_POST['id'];
         $stmt->execute([$pass_1,$id,$pass]);
         echo "情報を更新しました";
+        if($_POST['u_name'] != ""){
         echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
+        }else{
+            echo "<a href = 'company_list.php'>次へ</a>";
+        }
         exit;
     }else if(!empty($_POST['failure'])){//不合格ボタンを押されたら
         ?>
@@ -51,7 +55,12 @@ try {
         $id = $_POST['id'];
         $stmt->execute([$failure_1,$id,$failure]);
         echo "情報を更新しました";
-        echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
+        if($_POST['u_name'] != ""){
+            echo "<a href='recuruit_report_top.php?id=".$id."&name=".$name."&list_flag=1 '>次へ</a>";
+        }else{
+            echo "<a href = 'company_list.php'>次へ</a>";
+        }
+
         exit;
     }
 } catch (\Exception $e) {
@@ -231,12 +240,14 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
 				<input type="hidden" name="pass_1" value="<?php echo $company;?>" ><br><br>
 				<input type="hidden" name = name value="<?php echo $name?>">
 				<input type="hidden" name = id value="<?php echo $user_id?>">
+				<input type = hidden name = u_name value = <?php echo $_GET['name']?>>
 				<input type="submit" name="pass" value="内定"style="width:10%;">
 				</form>
 				<form action="company_details.php" method="post"><!-- 不合格ボタンをした際の処理　上に飛ぶ-->
 				<input type="hidden" name="failure_1" value="<?php echo $company;?>" >
 				<input type="hidden" name=name value="<?php echo $name?>">
 				<input type = "hidden" name = id value="<?php echo $user_id?>">
+				<input type = hidden name = u_name value = <?php echo $_GET['name']?>>
 				<input type="submit" name="failure" value="選考落ち"style="width:10%;">
 				</form>
     <?php }?>
