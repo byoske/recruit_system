@@ -14,7 +14,7 @@
             $pass = $_POST['pass_1'];
             $pass_1 = $_POST['pass'];
             $stmt->execute([$pass_1,$id,$pass]);
-            $_SESSION['Company'] = $_POST['pass'];
+            $_SESSION['Company'] = $pass;
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
             require_once ("mail.php");
@@ -23,7 +23,7 @@
             $failure=$_POST['failure_1'];
             $failure_1 =$_POST['failure'];
             $stmt->execute([$failure_1,$id,$failure]);
-            $_SESSION['Company'] = $_POST['failure'];
+            $_SESSION['Company'] = $failure;
             echo "情報を更新しました";
             echo '<meta http-equiv="refresh" content=" 2; url=recuruit_report_top.php">';
             require_once ("mail.php");
