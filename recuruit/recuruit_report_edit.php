@@ -53,7 +53,7 @@
     }
 
         // フォームから送信されたデータを各変数に格納
-
+        $company_id =$row['ID'];
         $company = $row['COMPANY'];
         $company2 = $row['COMPANY2'];
         $address = $row['ADDRESS'];
@@ -143,7 +143,8 @@
               	<?php }?>
             </div>
 
-	<?php  if($flg == 0){ ?>
+	<?php  if(($flg == 0) && (($id=='admin') || ($id==$company_id)) ){     //adminか本人じゃないと編集できない。
+?>
 	<form action="confirm.php" method="post">
 
 	<!--  //////////confirmにて内容確認のために必要なものの定義///////////////-->
@@ -205,8 +206,10 @@
 
 		<?php }
     }
-    if($row['CONTENTS'] != null){
+    if(($row['CONTENTS'] != null)&&($flg ==1)){
+        if(($id=='admin') || ($id==$company_id)){               //adminか本人じゃないと編集できない。
         ?><a href = "../recuruit/recuruit_report_edit.php?Edit=1&code=<?php echo $code;?>&flg=0" class="button" >編集</a></br><?php }
+    }
     $statement = $pdo->prepare("SELECT * FROM REPORT WHERE ID = ? AND COMPANY = ? ORDER BY CODE ASC ");
     $statement-> execute([$id,$company]);
     if($statement){
@@ -217,7 +220,9 @@
             while($row = $statement->fetch()){
                 $rows[] = $row;
             }
+        if(($id=='admin') || ($id==$company_id)){
             $code2 = array_column($rows,'CODE');
+        }
         }
         //前へ戻る処理
         $i = 0;$b = 0;$c = $row_count -1;
