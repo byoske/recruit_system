@@ -55,6 +55,9 @@ if (password_verify($_POST['password1'], $row['PASSWORD'])) {
     echo "<a href='../logout/logout.php'>ログアウト</a>";
     echo '<meta http-equiv="refresh" content=" 5; url= ../logout/logout.php">';
 } else {
+?>
+    <title>パスワード変更未完了</title>
+<?php
     echo '旧パスワードが間違っています。<br />';
     echo "<a href = '../user_Setting/pass_change.php'>戻る";
     return false;

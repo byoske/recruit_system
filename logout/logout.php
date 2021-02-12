@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<title>ログアウト</title>
 <?php
 session_start();
 $output = '';

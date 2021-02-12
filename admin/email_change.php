@@ -30,7 +30,7 @@ try {
 
     session_regenerate_id(true); //session_idを新しく生成し、置き換える
 
-    if ($email2 != $email3) {
+    if (($email2 != $email3)|| (($email2 == "") ||($email3 == "")) ){
  ?>
         <title>メールアドレス登録未完了</title>
  <?php

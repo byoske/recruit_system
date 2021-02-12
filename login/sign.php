@@ -21,7 +21,7 @@ if (isset($_SESSION['id']) && $_SESSION['id'] != 'admin') {
  <head>
    <meta charset="utf-8">
      <link rel="icon" type="image/png" href="../Free_File.jpg">
-   <title>Login</title>
+   <title>ログイン画面</title>
    <?php   //require_once ('../style.php');?>
       <style>
 
@@ -39,6 +39,7 @@ form dl dd{
    </style>
  </head>
  <body>
+ <title>ログインエラー</title>
    <h1>ログインしてください</h1>
    <form  action="login.php" method="post">
    <dl>

@@ -39,6 +39,9 @@ if (($row['NAME'] == "none" && $name2 == $name1) || ($id == "admin" && $name2 ==
     } catch (\Exception $e) {
         echo $e->getMessage() . PHP_EOL;
     }
+?>
+<title>名前変更完了</title>
+<?php
     echo '名前を変更しました。<br />';
 
     if($id == "admin") {

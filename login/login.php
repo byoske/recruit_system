@@ -21,17 +21,27 @@ try {
 }
 //emailがDB内に存在しているか確認
 if (!isset($row['ID'])) {
+?>
+	<title>ログインエラー</title>
+<?php
     echo '登録されていないユーザー名です。<br />';
     echo "<a href = 'sign.php'>戻る";
     return false;
 }
 //パスワード確認後sessionにメールアドレスを渡す
 if (password_verify($_POST['password'], $row['PASSWORD'])) {
+?>
+	<title>ログイン</title>
+<?php
     session_regenerate_id(true); //session_idを新しく生成し、置き換える
     $_SESSION['id'] = $row['ID'];
     $_SESSION['name'] = $row['NAME'];
     echo "ログインしました。</br>";
     if($id == "admin") {
+?>
+        <!DOCTYPE html>
+        <title>ログイン</title>
+<?php
         echo '<meta http-equiv="refresh" content=" 2; url=../admin/admin.php">';
         echo "<a href='../admin/admin.php'>次へ</a>";
         exit;
@@ -39,8 +49,12 @@ if (password_verify($_POST['password'], $row['PASSWORD'])) {
     echo '<meta http-equiv="refresh" content=" 2; url= ../user/user.php">';
     echo "<a href='../user/user.php'>次へ</a>";
 } else {
+?>
+    <title>ログインエラー</title>
+<?php
     echo 'パスワードが間違っています。<br />';
     echo "<a href = 'sign.php'>戻る";
     return false;
 }
+?>
 

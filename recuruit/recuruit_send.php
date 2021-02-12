@@ -77,7 +77,9 @@ if(!empty($_SESSION['code2'])){
 if($Contents == NULL){//新規作成の際のデータベースの登録内容
     if(empty($_SESSION['code2'])){
         try{
-
+?>
+			<title>送信エラー</title>
+<?php
             $statement = $pdo->prepare("SELECT COUNT(*) FROM REPORT WHERE ID = ? AND COMPANY = ?");
             $statement->execute([$id,$Company]);
             $count = (int)$statement->fetchColumn();
@@ -95,6 +97,9 @@ if($Contents == NULL){//新規作成の際のデータベースの登録内容
         }
     }
     try {
+?>
+		<title>送信エラー</title>
+<?php
         $stmt = $pdo->prepare("insert into report(ID,NAME,COMPANY,COMPANY2,ADDRESS,TEL,DATE,HOUR1,MIN1,HOUR2,MIN2,PURPOSE1,PURPOSE2,PURPOSE3) value(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $stmt->execute([$id, $name, $Company, $Company2, $address, $tel, $date, $hour1, $min1, $hour2, $min2, $pur1, $pur2, $pur3]);
         $stmt = ("SELECT * FROM REPORT ORDER BY CODE DESC LIMIT 1; ");
@@ -111,6 +116,9 @@ if($Contents == NULL){//新規作成の際のデータベースの登録内容
 }else{//活動中から実施内容など編集したら更新
     $code = $_SESSION['code'];
     try {
+?>
+		<title>送信完了</title>
+<?php
         $stmt = $pdo->prepare('UPDATE REPORT SET CONTENTS = ?, SCHEDULE = ? , REMARKS = ?  WHERE CODE = ?');
         $stmt->execute([$Contents, $Schedule,$Remarks,$code]);
         echo "情報を更新しました。";
