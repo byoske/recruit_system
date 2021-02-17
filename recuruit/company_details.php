@@ -85,6 +85,7 @@ try {
 $user_id = $row['ID'];          //adminだけ表示させる
 $user_name = $row['NAME'];      //adminだけ表示させる
 $company = $row['COMPANY'];
+$company2 = $row['COMPANY2'];
 $address = $row['ADDRESS'];
 $tel = $row['TEL'];
 $date = $row['DATE'];
@@ -147,6 +148,11 @@ $user_name = $user_name. "(" . $user_id.")";    //名前（id)が入っている
                <div class="element_wrap">
                     <label>企業名</label>
                     <p><?php echo $company; ?></p>
+               </div>
+
+				<div class="element_wrap">
+                    <label>フリガナ</label>
+                    <p><?php echo$company2; ?></p>
                </div>
 
                <div class="element_wrap">

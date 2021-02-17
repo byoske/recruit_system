@@ -34,8 +34,6 @@
     }
 
 
-
-
 ?>
 <?php
 
@@ -97,6 +95,11 @@
                <div class="element_wrap">
                     <label>企業名</label>
                     <p><?php echo $company; ?></p>
+               </div>
+
+			   <div class="element_wrap">
+                    <label>フリガナ</label>
+                    <p><?php echo $company2; ?></p>
                </div>
 
                <div class="element_wrap">
@@ -164,15 +167,15 @@
 
 	<div class="element_wrap">
 	<label for="i_contents">実施内容</label>
-	<textarea required name = "Contents" rows="10"   placeholder="説明された内容、試験・面接内容など記載"><?php if(!empty($_GET['Edit'])) echo $row['CONTENTS']; ?></textarea>
+	<textarea required name = "Contents" rows="10"   placeholder="説明された内容、試験・面接内容など記載。"><?php if(!empty($_GET['Edit'])) echo $row['CONTENTS']; ?></textarea>
 	</div>
 	<div class="element_wrap">
 	<label for="i_schedule">今後のスケジュール</label>
-	<textarea required rows = "10"name = "Schedule"   placeholder="この後の採用試験、採用試験の結果通知の日程等を記載"><?php if(!empty($_GET['Edit'])) echo $row['SCHEDULE']; ?></textarea>
+	<textarea required rows = "10"name = "Schedule"   placeholder="この後の採用試験、採用試験の結果通知の日程等を記載。"><?php if(!empty($_GET['Edit'])) echo $row['SCHEDULE']; ?></textarea>
 	</div>
 	<div class="element_wrap">
 	<label for="i_remarks">備考</label>
-	<textarea required rows = "10" name = "Remarks"  placeholder="入社への意向など特記事項"><?php if(!empty($_GET['Edit'])) echo $row['REMARKS']; ?></textarea>
+	<textarea required rows = "10" name = "Remarks"  placeholder="入社への意向など特記事項、企業の担当者を記載。"><?php if(!empty($_GET['Edit'])) echo $row['REMARKS']; ?></textarea>
 	</div>
 
 
