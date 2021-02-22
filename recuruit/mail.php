@@ -42,6 +42,7 @@ if(mb_send_mail($to, $subject, $message,"From:$headers")){
     echo '</br>';
     echo "担当の指導員に口頭で更新を伝えてください",'</br>';
 }else{
+
     echo "送信失敗";
 }
 echo '<a href = "recuruit_report_top.php">戻る</a>';

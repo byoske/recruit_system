@@ -2,7 +2,7 @@
     define('DSN','mysql:host=localhost;dbname=recuruit');//mysqlのデータベースの名前(websever)
     define('DB_USER','root');//sqlサーバーのユーザーネーム
     define('DB_PASS','root');//ユーザーのパスワード、設定していないため空白
-
+    ini_set('display_errors', 1);
     $purpose = array(1 => "説明会",
                      2 => "筆記試験",
                      3 => "面接",
