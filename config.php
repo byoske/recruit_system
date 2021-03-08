@@ -28,3 +28,14 @@ a:hover{
 <head><link rel="icon"  href="/Free_File.jpg"></head>
 
 </html>
+	   <script type="text/javascript">
+   <!--
+   function checkForm($this) {
+       var str=$this.value;
+       while(str.match(/[^A-Z^a-z^ぁ-んァ-ン一-龠\d\-\_]/)) {
+           str=str.replace(/[^A-Z^a-z^ぁ-んァ-ン一-龠\d\-\_]/,"");
+       }
+       $this.value=str;
+   }
+   //-->
+   </script>

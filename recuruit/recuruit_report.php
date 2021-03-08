@@ -35,25 +35,25 @@
 	<form action="confirm.php" method="post">
      <div class="element_wrap">
     	<label for="i_Company">企業名</label>
-    	<input required id="i_Company" type="text" name="company" value ="<?php if(!empty($_GET['code'])) echo $row['COMPANY']; ?>" placeholder="株式会社イケメン"><br>
+    	<input required id="i_Company" type="text" name="company" onInput="checkForm(this)" value ="<?php if(!empty($_GET['code'])) echo $row['COMPANY']; ?>" placeholder="株式会社イケメン"><br>
 
     	<label for="i_Company">フリガナ</label>
-    	<input required id="i_Company" type="text" name="company2" value ="<?php if(!empty($_GET['code'])) echo $row['COMPANY2']; ?>" placeholder="カブシキガイシャイケメン">
+    	<input required id="i_Company" type="text" name="company2" onInput="checkForm(this)" value ="<?php if(!empty($_GET['code'])) echo $row['COMPANY2']; ?>" placeholder="カブシキガイシャイケメン">
     </div>
 
  	<div class="element_wrap">
  		<label for="i_address">住所</label>
- 		<input required  type="text" name ="address" value="<?php if(!empty($_GET['code'])) echo $row['ADDRESS']; ?>" placeholder="東京都千代田区千代田１−１">
+ 		<input required  type="text" name ="address" onInput="checkForm(this)"  value="<?php if(!empty($_GET['code'])) echo $row['ADDRESS']; ?>" placeholder="東京都千代田区千代田１−１">
  	</div>
 
  	<div class="element_wrap">
  		<label for="i_tel">電話番号</label>
- 		<input required id="i_tel" type="tel" name="tel" onInput="checkForm(this)" value ="<?php if(!empty($_GET['code'])) echo $row['TEL']; ?>" placeholder="080-1234-5678">
+ 		<input required id="i_tel" type="tel" name="tel" onInput="checkForm2(this)" value ="<?php if(!empty($_GET['code'])) echo $row['TEL']; ?>" placeholder="080-1234-5678">
  	</div>
 
  	<div class="element_wrap">
  		<label for="i_date">日付</label>
- 		<input required id ="i_date" type="date" name="date" value="">
+ 		<input required id ="i_date" type="date" name="date" onInput="checkForm(this)"  value="">
  	</div>
 
  	<div class="element_wrap">
@@ -94,7 +94,7 @@
 
    <script type="text/javascript">
    <!--
-   function checkForm($this) {
+   function checkForm2($this) {
        var str=$this.value;
        while(str.match(/[^0-9-]/)) {
            str=str.replace(/[^0-9-]/,"");

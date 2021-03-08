@@ -33,8 +33,8 @@ else{
 
 	キーワード<br>
 	<form action="company_list.php" method="get" style="display: inline">
-	<input type="text" name="yourname">を含む<br><br>
-	<input type="text" name="yourname2">を含まない<br><br>
+	<input type="text" name="yourname" onInput="checkForm(this)">を含む<br><br>
+	<input type="text" name="yourname2" onInput="checkForm(this)">を含まない<br><br>
 	<input type="submit" value="検索"><br><br>
 	</form>
 
@@ -44,6 +44,7 @@ else{
 	<form action="company_list.php" method="get" style="display: inline">
 	<input type="submit" value="全体表示"><br><br>
 	</form>
+
 
 </body>
 </html>
